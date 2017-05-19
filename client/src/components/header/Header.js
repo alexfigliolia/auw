@@ -6,7 +6,8 @@ class Header extends Component {
     	<header className="header" id="header">
     		<div>
     			<h1 className="logo">All Uniform Wear</h1>
-    			<div className="scan"></div>
+    
+                <input className="scan" type="file" accept="image/*" capture="camera" />
     		</div>
     	</header>
     );
