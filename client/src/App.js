@@ -6,17 +6,17 @@ import './App.css';
 class App extends Component {
   constructor(props) {
   	super(props);
-	this.state = {
-		squareClasses : [
-			"square",
-			"square",
-			"square",
-			"square",
-			"square",
-			"square"
-		],
-		scanned : 0
-	}
+  	this.state = {
+  		squareClasses : [
+  			"square",
+  			"square",
+  			"square",
+  			"square",
+  			"square",
+  			"square"
+  		],
+  		scanned : 2
+  	}
   }
 
   componentDidMount(){
@@ -30,9 +30,11 @@ class App extends Component {
   	for(var i = 0; i < squareOn; i++) {
   		classes[i] = 'square square-complete'
   	}
-  	this.setState({
-  		squareClasses : classes
-  	});
+  	setTimeout(function(){
+      this.setState({
+        squareClasses : classes
+      });
+    }.bind(this), 1000);
   }
   scan(){
   	var s = this.state.scanned + 1;
@@ -40,7 +42,6 @@ class App extends Component {
   	this.setState({
   		scanned: s
   	});
-  	this.scan();
   }
   render() {
     return (

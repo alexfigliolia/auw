@@ -20,101 +20,317 @@
 		color: #fff;
 		font-size: 1.5em;
 		font-weight: 900;
+		position: relative;
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 0%;
+			height: 1px;
+			background: #fff;
+			transition-duration: 0.3s;
+			transition-delay: 0.3s;
+		}
 		&>.circle{
 			@include center;
 			height: 75px;
 			width: 75px;
 			border-radius: 50%;
-			// background: #fff;
-			// color: #1085DF;
-			// @include headerShadow;
 			z-index: 4;
-		}
-		&>.circle-complete{
-			background: #44CE5D url('../public/check.svg') no-repeat center;
-			background-size: 50%;
-			&::after {
-				content: "";
-				display: none;
-			}
+			transform: scale(0) rotate(-720deg);
+			transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 		}
 	}
 	&>.square:nth-of-type(odd) {
 		border-right: 1px solid #fff;
 	}
+	&>.square:nth-of-type(1)::after {
+		content: "1st";
+		@include center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+	}
+	&>.square:nth-of-type(2)::after {
+		content: "2nd";
+		@include center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+	}
+	&>.square:nth-of-type(3)::after {
+		content: url('../public/gift.svg');
+		height: 30%;
+		width: 30%;
+		@include center;
+		position: absolute;
+		top: 35%;
+		left: 35%;
+	}
+	&>.square:nth-of-type(4)::after {
+		content: "4th";
+		@include center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+	}
+	&>.square:nth-of-type(5)::after {
+		content: "5th";
+		@include center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+	}
+	&>.square:nth-of-type(6)::after {
+		content: url('../public/gift.svg');
+		height: 30%;
+		width: 30%;
+		@include center;
+		position: absolute;
+		top: 35%;
+		left: 35%;
+		// height: 100%;
+		// width: 100%;
+	}
 	&>.square:nth-of-type(1)>.circle::after {
 		content: "1st";
 		@include center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
 	}
 	&>.square:nth-of-type(2)>.circle::after {
 		content: "2nd";
 		@include center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
 	}
 	&>.square:nth-of-type(3)>.circle::after {
-		content: "3rd";
+		content: url('../public/gift.svg');
+		height: 30%;
+		width: 30%;
 		@include center;
+		position: absolute;
+		top: 35%;
+		left: 35%;
 	}
 	&>.square:nth-of-type(4)>.circle::after {
 		content: "4th";
 		@include center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
 	}
 	&>.square:nth-of-type(5)>.circle::after {
 		content: "5th";
 		@include center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
 	}
 	&>.square:nth-of-type(6)>.circle::after {
-		content: "6th";
+		content: url('../public/gift.svg');
+		height: 30%;
+		width: 30%;
 		@include center;
+		position: absolute;
+		top: 35%;
+		left: 35%;
 	}
 	&>.square:nth-of-type(3n) {
 		&>.circle {
 			color: #44CE5D;
 			&::after {
+				@include center;
+				left: 25%;
+				top: 25%;
 				content: url('../public/gift.svg');
 				height: 50%;
 				width: 50%;
-				// @include center;
-				// z-index: 10;
 			}
 		}
 	}
 	&>.square.square-on {
 		position: relative;
 		&::before {
-			content: "";
-			position: absolute;
-			top: 50%;
-			left: 0;
 			width: 50%;
-			height: 1px;
-			background: #fff;	
 		}
 		&>.circle {
 			background: #fff;
 			color: #1085DF;
 			@include headerShadow;
+			transform: scale(1) rotate(0deg);
+		}
+	}
+	&>.square.square-on:nth-of-type(1){
+		&>.circle {
+			transform: scale(1) rotate(0deg);
+			transition-duration: 0.3s;
+			transition-delay: 0.15s;
+		}
+		&::before{
+			transition-duration: 0.3s;
+			transition-delay: 0s;
+		}
+	}
+	&>.square.square-on:nth-of-type(2){
+		&>.circle {
+			transform: scale(1) rotate(0deg);
+			transition-duration: 0.3s;
+			transition-delay: 0.45s;
+		}
+		&::before{
+			transition-duration: 0.3s;
+			transition-delay: 0.3s;
+		}
+	}
+	&>.square.square-on:nth-of-type(3){
+		&>.circle {
+			transform: scale(1) rotate(0deg);
+			transition-duration: 0.3s;
+			transition-delay: 0.75s;
+		}
+		&::before{
+			transition-duration: 0.3s;
+			transition-delay: 0.6s;
+		}
+	}
+	&>.square.square-on:nth-of-type(4){
+		&>.circle {
+			transform: scale(1) rotate(0deg);
+			transition-duration: 0.3s;
+			transition-delay: 1.05s;
+		}
+		&::before{
+			transition-duration: 0.3s;
+			transition-delay: 0.9s;
+		}
+	}
+	&>.square.square-on:nth-of-type(5){
+		&>.circle {
+			transform: scale(1) rotate(0deg);
+			transition-duration: 0.3s;
+			transition-delay: 1.35s;
+		}
+		&::before{
+			transition-duration: 0.3s;
+			transition-delay: 1.2s;
+		}
+	}
+	&>.square.square-on:nth-of-type(6){
+		&>.circle {
+			transform: scale(1) rotate(0deg);
+			transition-duration: 0.3s;
+			transition-delay: 1.65s;
+		}
+		&::before{
+			transition-duration: 0.3s;
+			transition-delay: 1.5s;
 		}
 	}
 	&>.square.square-complete {
 		position: relative;
-		&::before {
-			content: "";
-			position: absolute;
-			top: 50%;
-			left: 0;
-			width: 100%;
-			height: 1px;
-			background: #fff;	
-		}
 		&>.circle {
 			background: #fff url('../public/check.svg') no-repeat center;
 			background-size: 50%;
 			position: relative;
 			@include headerShadow;
+			// transform: scale(1) rotate(0deg);
 			&::after {
 				display: none;
 			}
 		}
+	}
+}
+
+.square.square-complete:nth-of-type(1){
+	&::before {
+		transition-duration: 0.3s;
+		transition-delay: 0s;
+		width: 100%;
+	}
+	&>.circle {
+		transition-duration: 0.3s;
+		transition-delay: 0s;
+		transform: scale(1) rotate(0deg);
+	}
+}
+.square.square-complete:nth-of-type(2){
+	&::before {
+		transition-duration: 0.3s;
+		transition-delay: 0.3s;
+		width: 100%;
+	}
+	&>.circle {
+		transition-duration: 0.3s;
+		transition-delay: 0.3s;
+		transform: scale(1) rotate(0deg);
+	}
+}
+.square.square-complete:nth-of-type(3){
+	&::before {
+		transition-duration: 0.3s;
+		transition-delay: 0.6s;
+		width: 100%;
+	}
+	&>.circle {
+		transition-duration: 0.3s;
+		transition-delay: 0.6s;
+		transform: scale(1) rotate(0deg);
+	}
+}
+.square.square-complete:nth-of-type(4){
+	&::before {
+		transition-duration: 0.3s;
+		transition-delay: 0.9s;
+		width: 100%;
+	}
+	&>.circle {
+		transition-duration: 0.3s;
+		transition-delay: 0.9s;
+		transform: scale(1) rotate(0deg);
+	}
+}
+.square.square-complete:nth-of-type(5){
+	&::before {
+		transition-duration: 0.3s;
+		transition-delay: 1.2s;
+		width: 100%;
+	}
+	&>.circle {
+		transition-duration: 0.3s;
+		transition-delay: 1.2s;
+		transform: scale(1) rotate(0deg);
+	}
+}
+.square.square-complete:nth-of-type(6){
+	&::before {
+		transition-duration: 0.3s;
+		transition-delay: 1.5s;
+		width: 100%;
+	}
+	&>.circle {
+		transition-duration: 0.3s;
+		transition-delay: 1.5s;
+		transform: scale(1) rotate(0deg);
 	}
 }
 
