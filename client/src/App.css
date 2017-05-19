@@ -420,11 +420,18 @@ body {
       align-items: center;
       background: url("../public/camera.svg") no-repeat center;
       background-size: 70%;
-      cursor: pointer; }
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 0; }
       @media (min-width: 800px) {
         .header > div > .scan {
           width: 80px;
           height: 80px; } }
+    .header > div > .get-file {
+      opacity: 0;
+      height: 60px;
+      width: 60px; }
 
 @keyframes wave {
   0% {

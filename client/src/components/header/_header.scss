@@ -39,10 +39,18 @@
 			background: url('../public/camera.svg') no-repeat center;
 			background-size: 70%;
 			cursor: pointer;
+			position: absolute;
+			top: 0;
+			right: 0;
 			@media #{$mq-800} {
 		    	width: 80px;
 				height: 80px;
 		    }
+		}
+		&>.get-file{
+			opacity: 0;
+			height: 60px;
+			width: 60px;
 		}
 	}
 }
