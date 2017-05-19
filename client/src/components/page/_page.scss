@@ -1,0 +1,120 @@
+.page {
+	width: 100%;
+	@include center;
+	flex-wrap: wrap;
+	background: #fff;
+	margin: 0;
+	padding: 0;
+	margin-top: 60px;
+	border-top: 1px solid #fff;
+	@include background-top;
+	@media #{$mq-800} {
+		margin-top: 80px;
+	}
+	&>.square{
+		box-sizing: border-box;
+		border-bottom: 1px solid #fff;
+		align-self: stretch;
+		width: 50%;
+		@include center;
+		color: #fff;
+		font-size: 1.5em;
+		font-weight: 900;
+		&>.circle{
+			@include center;
+			height: 75px;
+			width: 75px;
+			border-radius: 50%;
+			// background: #fff;
+			// color: #1085DF;
+			// @include headerShadow;
+			z-index: 4;
+		}
+		&>.circle-complete{
+			background: #44CE5D url('../public/check.svg') no-repeat center;
+			background-size: 50%;
+			&::after {
+				content: "";
+				display: none;
+			}
+		}
+	}
+	&>.square:nth-of-type(odd) {
+		border-right: 1px solid #fff;
+	}
+	&>.square:nth-of-type(1)>.circle::after {
+		content: "1st";
+		@include center;
+	}
+	&>.square:nth-of-type(2)>.circle::after {
+		content: "2nd";
+		@include center;
+	}
+	&>.square:nth-of-type(3)>.circle::after {
+		content: "3rd";
+		@include center;
+	}
+	&>.square:nth-of-type(4)>.circle::after {
+		content: "4th";
+		@include center;
+	}
+	&>.square:nth-of-type(5)>.circle::after {
+		content: "5th";
+		@include center;
+	}
+	&>.square:nth-of-type(6)>.circle::after {
+		content: "6th";
+		@include center;
+	}
+	&>.square:nth-of-type(3n) {
+		&>.circle {
+			color: #44CE5D;
+			&::after {
+				content: url('../public/gift.svg');
+				height: 50%;
+				width: 50%;
+				// @include center;
+				// z-index: 10;
+			}
+		}
+	}
+	&>.square.square-on {
+		position: relative;
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 50%;
+			height: 1px;
+			background: #fff;	
+		}
+		&>.circle {
+			background: #fff;
+			color: #1085DF;
+			@include headerShadow;
+		}
+	}
+	&>.square.square-complete {
+		position: relative;
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 100%;
+			height: 1px;
+			background: #fff;	
+		}
+		&>.circle {
+			background: #fff url('../public/check.svg') no-repeat center;
+			background-size: 50%;
+			position: relative;
+			@include headerShadow;
+			&::after {
+				display: none;
+			}
+		}
+	}
+}
+
