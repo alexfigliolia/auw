@@ -16,7 +16,7 @@ class App extends Component {
   			"square",
   			"square"
   		],
-  		scanned : 2,
+  		scanned : 3,
       loginClasses: "login",
       pageClasses: "page"
   	}
