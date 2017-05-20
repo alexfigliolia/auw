@@ -37,6 +37,15 @@ class App extends Component {
     this.setState({
       squareClasses : classes
     });
+    // if((squareOn + 1) % 3 === 0) {
+    //   classes[squareOn] = 'square square-on gift-on';
+    //   for(var j = 0; j < squareOn; j++) {
+    //     classes[j] = 'square square-complete'
+    //   }
+    //   this.setState({
+    //     squareClasses : classes
+    //   });
+    // }
   }
   scan(){
     var s = this.state.scanned + 1;

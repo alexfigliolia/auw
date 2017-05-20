@@ -21,7 +21,7 @@ class Page extends Component {
           <div className="circle"></div>
         </div>
     		<div className={this.props.squareClasses[2]}>
-          <div className="circle"></div>
+          <div className="circle gift"></div>
         </div>
     		<div className={this.props.squareClasses[3]}>
           <div className="circle"></div>
@@ -30,7 +30,7 @@ class Page extends Component {
           <div className="circle"></div>
         </div>
     		<div className={this.props.squareClasses[5]}>
-          <div className="circle"></div>
+          <div className="circle gift"></div>
         </div>
     	</div>
     );

@@ -344,7 +344,33 @@
 	}
 }
 
+// .square.square-on.gift-on {
+// 	// &::after {
+// 	// 	display: none;
+// 	// }
+// 	// &::before {
+// 	// 	display: none;
+// 	// }
+// 	&> .circle.gift{
+// 		// transform: scale(20) rotate(0deg); 
+// 		background: #fff;
+// 		animation: scale 3s 1s;
+// 		// transition-duration: 1s;
+// 		// transition-delay: 0.8s;
+// 		&::after {
+// 			display: none;
+// 		}
+// 	}
+// }
+
 .page-show{
 	transform: translateX(0%);
 }
+
+@keyframes scale {
+    0%   {background: #fff; transform: scale(1);}
+    50%  {background: green; transform: scale(1);}
+    100%  {background: green; transform: scale(20);}
+}
+
 

@@ -829,6 +829,17 @@ body {
 .page-show {
   transform: translateX(0%); }
 
+@keyframes scale {
+  0% {
+    background: #fff;
+    transform: scale(1); }
+  50% {
+    background: green;
+    transform: scale(1); }
+  100% {
+    background: green;
+    transform: scale(20); } }
+
 .App {
   text-align: center; }
 
