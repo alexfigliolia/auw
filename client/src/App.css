@@ -558,8 +558,8 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 75px;
-      width: 75px;
+      height: 90px;
+      width: 90px;
       border-radius: 50%;
       z-index: 4;
       transform: scale(0) rotate(-720deg);
@@ -575,7 +575,8 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%; }
+    width: 100%;
+    font-size: 6vh; }
   .page > .square:nth-of-type(2)::after {
     content: "2nd";
     display: flex;
@@ -585,7 +586,8 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%; }
+    width: 100%;
+    font-size: 6vh; }
   .page > .square:nth-of-type(3)::after {
     content: url("../public/gift.svg");
     height: 30%;
@@ -605,7 +607,8 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%; }
+    width: 100%;
+    font-size: 6vh; }
   .page > .square:nth-of-type(5)::after {
     content: "5th";
     display: flex;
@@ -615,7 +618,8 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%; }
+    width: 100%;
+    font-size: 6vh; }
   .page > .square:nth-of-type(6)::after {
     content: url("../public/gift.svg");
     height: 30%;
@@ -635,7 +639,8 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%; }
+    width: 100%;
+    font-size: 6vh; }
   .page > .square:nth-of-type(2) > .circle::after {
     content: "2nd";
     display: flex;
@@ -645,7 +650,8 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%; }
+    width: 100%;
+    font-size: 6vh; }
   .page > .square:nth-of-type(3) > .circle::after {
     content: url("../public/gift.svg");
     height: 30%;
@@ -665,7 +671,8 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%; }
+    width: 100%;
+    font-size: 6vh; }
   .page > .square:nth-of-type(5) > .circle::after {
     content: "5th";
     display: flex;
@@ -675,7 +682,8 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%; }
+    width: 100%;
+    font-size: 6vh; }
   .page > .square:nth-of-type(6) > .circle::after {
     content: url("../public/gift.svg");
     height: 30%;
