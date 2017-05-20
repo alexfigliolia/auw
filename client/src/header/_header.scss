@@ -1,0 +1,68 @@
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+	height: 60px;
+	width: 100%;
+	@include headerShadow;
+	@include center;
+	@include background-top;
+	background: #fff;
+	@media #{$mq-800} {
+		height: 80px;
+	}
+	&>div {
+		@include center;
+		justify-content: space-between;
+		width: 100%;
+		max-width: 1220px;
+		&>.logo{
+			cursor: pointer;
+			font-family: "Raleway", sans-serif;
+			font-weight: 900;
+			font-size: 1.5em;
+			margin-left: 10px;
+		  	@include background-top;
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		    position: relative;
+		    transition-duration: 0.25s;
+		    @media #{$mq-800} {
+		    	font-size: 2.75em;
+		    }
+		}
+		&>.scan {
+			width: 60px;
+			height: 60px;
+			@include center;
+			background: url('camera.svg') no-repeat center;
+			background-size: 70%;
+			cursor: pointer;
+			position: absolute;
+			top: 0;
+			right: 0;
+			@media #{$mq-800} {
+		    	width: 80px;
+				height: 80px;
+		    }
+		}
+		&>.get-file{
+			opacity: 0;
+			height: 60px;
+			width: 60px;
+		}
+	}
+}
+
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
