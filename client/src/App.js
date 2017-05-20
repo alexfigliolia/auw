@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Quagga from 'quagga';
 import Header from './components/header/Header';
 import Login from './components/login/Login';
 import Page from './components/page/Page';
@@ -16,7 +17,7 @@ class App extends Component {
   			"square",
   			"square"
   		],
-  		scanned : 2,
+  		scanned : 0,
       loginClasses: "login",
       pageClasses: "page"
   	}
@@ -27,23 +28,25 @@ class App extends Component {
   // }
 
   getSpot(){
-  	var squareOn = this.state.scanned;
-  	var classes = this.state.squareClasses;
-  	classes[squareOn] = 'square square-on';
-  	for(var i = 0; i < squareOn; i++) {
-  		classes[i] = 'square square-complete'
-  	}
+    var squareOn = this.state.scanned;
+    var classes = this.state.squareClasses;
+    classes[squareOn] = 'square square-on';
+    for(var i = 0; i < squareOn; i++) {
+      classes[i] = 'square square-complete'
+    }
     this.setState({
       squareClasses : classes
     });
   }
   scan(){
-  	var s = this.state.scanned + 1;
-  	console.log(s);
-  	this.setState({
-  		scanned: s
-  	});
-    this.getSpot();
+    var s = this.state.scanned + 1;
+    console.log(s);
+    this.setState({
+      scanned: s
+    });
+    setTimeout(function(){
+      this.getSpot();
+    }.bind(this), 200);
   }
   login(){
     this.setState({
@@ -54,10 +57,34 @@ class App extends Component {
       this.getSpot();
     }.bind(this), 600);
   }
+  handleCode(e){
+    e.persist()
+    var self = this;
+    var bc = e.target.files[0].name;
+    console.log(bc);
+    Quagga.decodeSingle({
+        decoder: {
+            readers: ["code_128_reader"] // List of active readers
+        },
+        locate: true, // try to locate the barcode in the image
+        src: URL.createObjectURL(e.target.files[0]) // or 'data:image/jpg;base64,' + data
+    }, function(result){
+        if(result.codeResult) {
+            console.log("result", result.codeResult.code);
+            if(result.codeResult.code === '0001285112001000040801'){
+              self.scan();
+              e.target.value = null;
+            }
+        } else {
+            console.log("not detected");
+        }
+    });
+  }
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header 
+          handleCode={this.handleCode.bind(this)} />
 
         <Login 
           classes={this.state.loginClasses}
