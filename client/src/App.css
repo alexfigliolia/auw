@@ -441,6 +441,75 @@ body {
   100% {
     transform: translateX(0px); } }
 
+.login {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  z-index: 100; }
+  @media (min-width: 800px) {
+    .login {
+      top: 80px; } }
+  .login > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: -2.5vh; }
+    .login > div > h1 {
+      font-size: 9vh;
+      margin: 0;
+      margin-bottom: 20px;
+      font-weight: 900;
+      background: -webkit-linear-gradient(#eee, #757777);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; }
+    .login > div > .userinfo {
+      width: 90%;
+      max-width: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: #fff;
+      background: transparent; }
+      .login > div > .userinfo > input {
+        width: 100%;
+        height: 55px;
+        box-sizing: border-box;
+        border: none;
+        background: #E0E3E3;
+        border-radius: 0px;
+        margin: 1px 0;
+        outline: none;
+        padding-left: 10px; }
+      .login > div > .userinfo > button {
+        height: 60px;
+        width: 100%;
+        border: none;
+        border-radius: none;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        color: #fff;
+        font-size: 1.25em;
+        font-weight: 900;
+        background: #005C97;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to top, #363795, #005C97);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to top, #363795, #005C97);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        outline: none; }
+
+.login-hide {
+  transform: translateX(-100%);
+  transition-duration: 0.5s; }
+
 .page {
   width: 100%;
   display: flex;
@@ -457,7 +526,9 @@ body {
   background: -webkit-linear-gradient(to top, #363795, #005C97);
   /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #363795, #005C97);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  transform: translateX(50%);
+  transition-duration: 0.5s; }
   @media (min-width: 800px) {
     .page {
       margin-top: 80px; } }
@@ -746,6 +817,9 @@ body {
   transition-duration: 0.3s;
   transition-delay: 1.5s;
   transform: scale(1) rotate(0deg); }
+
+.page-show {
+  transform: translateX(0%); }
 
 .App {
   text-align: center; }

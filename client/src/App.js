@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './components/header/Header';
+import Login from './components/login/Login';
 import Page from './components/page/Page';
 import './App.css';
 
@@ -15,13 +16,15 @@ class App extends Component {
   			"square",
   			"square"
   		],
-  		scanned : 2
+  		scanned : 2,
+      loginClasses: "login",
+      pageClasses: "page"
   	}
   }
 
-  componentDidMount(){
-  	this.getSpot();
-  }
+  // componentDidMount(){
+  // 	this.getSpot();
+  // }
 
   getSpot(){
   	var squareOn = this.state.scanned;
@@ -30,11 +33,9 @@ class App extends Component {
   	for(var i = 0; i < squareOn; i++) {
   		classes[i] = 'square square-complete'
   	}
-  	setTimeout(function(){
-      this.setState({
-        squareClasses : classes
-      });
-    }.bind(this), 1000);
+    this.setState({
+      squareClasses : classes
+    });
   }
   scan(){
   	var s = this.state.scanned + 1;
@@ -42,13 +43,30 @@ class App extends Component {
   	this.setState({
   		scanned: s
   	});
+    this.getSpot();
+  }
+  login(){
+    this.setState({
+      loginClasses: "login login-hide",
+      pageClasses: "page page-show"
+    });
+    setTimeout(function(){
+      this.getSpot();
+    }.bind(this), 600);
   }
   render() {
     return (
       <div className="App">
         <Header />
-        <Page 
-        	squareClasses={this.state.squareClasses} />
+
+        <Login 
+          classes={this.state.loginClasses}
+          login={this.login.bind(this)} />
+
+        <Page
+          pageClasses={this.state.pageClasses}
+          squareClasses={this.state.squareClasses} />
+
       </div>
     );
   }

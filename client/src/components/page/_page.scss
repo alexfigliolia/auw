@@ -8,6 +8,8 @@
 	margin-top: 60px;
 	border-top: 1px solid #fff;
 	@include background-top;
+	transform: translateX(50%);
+	transition-duration: 0.5s;
 	@media #{$mq-800} {
 		margin-top: 80px;
 	}
@@ -332,5 +334,9 @@
 		transition-delay: 1.5s;
 		transform: scale(1) rotate(0deg);
 	}
+}
+
+.page-show{
+	transform: translateX(0%);
 }
 

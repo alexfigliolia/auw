@@ -13,7 +13,7 @@ class Page extends Component {
   }
   render() {
     return (
-    	<div ref='page' className="page" id="page">
+    	<div ref='page' className={this.props.pageClasses} id="page">
     		<div className={this.props.squareClasses[0]}>
           <div className="circle"></div>
         </div>

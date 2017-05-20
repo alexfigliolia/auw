@@ -9,6 +9,7 @@
     "react-scripts": "0.9.5"
   },
   "dependencies": {
+    "auth0-js": "^8.6.1",
     "axios": "^0.16.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
