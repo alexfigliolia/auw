@@ -841,7 +841,9 @@ body {
     transform: scale(20); } }
 
 .App {
-  text-align: center; }
+  text-align: center;
+  width: 100%;
+  overflow-x: hidden; }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
