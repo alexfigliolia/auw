@@ -7,7 +7,7 @@ class Header extends Component {
     		<div>
     			<h1 className="logo">All Uniform Wear</h1>
     			<div className="scan"></div>
-                <input className="get-file" type="file" accept="image/*" capture="camera" />
+                <input onChange={this.props.handleCode} className="get-file" type="file" accept="image/*" capture="camera" />
     		</div>
     	</header>
     );
