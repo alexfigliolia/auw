@@ -826,6 +826,12 @@ body {
   transition-delay: 1.5s;
   transform: scale(1) rotate(0deg); }
 
+.square.square-on.gift-on > .circle.gift {
+  background: #fff;
+  animation: scale 2s forwards; }
+  .square.square-on.gift-on > .circle.gift::after {
+    display: none; }
+
 .page-show {
   transform: translateX(0%); }
 
@@ -833,12 +839,9 @@ body {
   0% {
     background: #fff;
     transform: scale(1); }
-  50% {
-    background: green;
-    transform: scale(1); }
   100% {
-    background: green;
-    transform: scale(20); } }
+    background: #fff;
+    transform: scale(25); } }
 
 .App {
   text-align: center;

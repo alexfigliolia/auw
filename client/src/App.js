@@ -57,7 +57,8 @@ class App extends Component {
       this.getSpot();
     }.bind(this), 200);
   }
-  login(){
+  login(e, p, n){
+    console.log(n + ', ' + e + ', ' + p);
     this.setState({
       loginClasses: "login login-hide",
       pageClasses: "page page-show"
@@ -89,6 +90,16 @@ class App extends Component {
         }
     });
   }
+  chooseGift(e) {
+    e.persist();
+    if(e.target.parentNode.className === 'square square-on' && e.target.className === 'circle gift') {
+      console.log(e.target);
+      e.target.parentNode.classList.add('gift-on');
+      setTimeout(function(){
+        e.target.parentNode.classList.remove('gift-on');
+      }, 3000);
+    }
+  }
   render() {
     return (
       <div className="App">
@@ -101,7 +112,8 @@ class App extends Component {
 
         <Page
           pageClasses={this.state.pageClasses}
-          squareClasses={this.state.squareClasses} />
+          squareClasses={this.state.squareClasses}
+          gift={this.chooseGift.bind(this)} />
 
       </div>
     );
