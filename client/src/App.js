@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Quagga from 'quagga';
+import Entrance from './components/entrance/Entrance.js';
 import Header from './components/header/Header';
 import Login from './components/login/Login';
 import Page from './components/page/Page';
@@ -7,24 +8,25 @@ import './App.css';
 
 class App extends Component {
   constructor(props) {
-  	super(props);
-  	this.state = {
-  		squareClasses : [
-  			"square",
-  			"square",
-  			"square",
-  			"square",
-  			"square",
-  			"square"
-  		],
-  		scanned : 2,
+    super(props);
+    this.state = {
+      squareClasses : [
+        "square",
+        "square",
+        "square",
+        "square",
+        "square",
+        "square"
+      ],
+      scanned : 2,
       loginClasses: "login",
-      pageClasses: "page"
-  	}
+      pageClasses: "page",
+      entranceClasses: "entrance"
+    }
   }
 
   // componentDidMount(){
-  // 	this.getSpot();
+  //  this.getSpot();
   // }
 
   getSpot(){
@@ -37,15 +39,6 @@ class App extends Component {
     this.setState({
       squareClasses : classes
     });
-    // if((squareOn + 1) % 3 === 0) {
-    //   classes[squareOn] = 'square square-on gift-on';
-    //   for(var j = 0; j < squareOn; j++) {
-    //     classes[j] = 'square square-complete'
-    //   }
-    //   this.setState({
-    //     squareClasses : classes
-    //   });
-    // }
   }
   scan(){
     var s = this.state.scanned + 1;
@@ -57,11 +50,12 @@ class App extends Component {
       this.getSpot();
     }.bind(this), 200);
   }
-  login(e, p, n){
-    console.log(n + ', ' + e + ', ' + p);
+  login(e, p){
+    console.log(e + ' ' + p);
     this.setState({
       loginClasses: "login login-hide",
-      pageClasses: "page page-show"
+      pageClasses: "page page-show",
+      entranceClasses: "entrance entrance-hide"
     });
     setTimeout(function(){
       this.getSpot();
@@ -90,31 +84,19 @@ class App extends Component {
         }
     });
   }
-  chooseGift(e) {
-    e.persist();
-    if(e.target.parentNode.className === 'square square-on' && e.target.className === 'circle gift') {
-      console.log(e.target);
-      e.target.parentNode.classList.add('gift-on');
-      setTimeout(function(){
-        e.target.parentNode.classList.remove('gift-on');
-      }, 3000);
-    }
-  }
   render() {
     return (
       <div className="App">
         <Header 
           handleCode={this.handleCode.bind(this)} />
 
-        <Login 
-          classes={this.state.loginClasses}
-          login={this.login.bind(this)} />
+        <Entrance 
+          login={this.login.bind(this)}
+          entranceClasses={this.state.entranceClasses} />
 
         <Page
           pageClasses={this.state.pageClasses}
-          squareClasses={this.state.squareClasses}
-          gift={this.chooseGift.bind(this)} />
-
+          squareClasses={this.state.squareClasses} />
       </div>
     );
   }

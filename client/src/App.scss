@@ -1,5 +1,6 @@
-@import 'variables';
-@import 'reset';
+@import './variables';
+@import './reset';
+@import './flickity';
 
 body {
   margin: 0;
@@ -8,9 +9,10 @@ body {
   font-family: "Raleway", sans-serif;
 }
 
-@import 'components/header/header';
-@import 'components/login/login';
-@import 'components/page/page';
+@import './components/entrance/entrance';
+@import './components/header/header';
+@import './components/login/login';
+@import './components/page/page';
 
 .App {
   text-align: center;

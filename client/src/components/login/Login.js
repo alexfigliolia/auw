@@ -16,13 +16,13 @@ componentDidMount(){
         e = this.refs.e,
         p = this.refs.p,
         n = this.refs.n;
-    // if(teste.test(e.value) && p !== '') {
+    if(teste.test(e.value) && p !== '') {
       this.props.login(e.value, p.value, n.value);
-    // } else {
-    //   e.value = '';
-    //   e.placeholder = 'enter a valid email';
-    //   p.value = '';
-    // }
+    } else {
+      e.value = '';
+      e.placeholder = 'enter a valid email';
+      p.value = '';
+    }
   }
   render() {
     return (
