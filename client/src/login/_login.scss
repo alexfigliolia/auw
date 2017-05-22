@@ -7,7 +7,7 @@
 	top: 60px;
 	left: 0px;
 	z-index: 100;
-	// display: none;
+	display: none;
 
 	@media #{$mq-800} {
 		top: 80px;
@@ -68,4 +68,8 @@
 .login-hide {
 	transform: translateX(-100%);
 	transition-duration: 0.5s;
+}
+
+.slide.login {
+	top: 0;
 }

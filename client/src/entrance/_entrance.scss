@@ -1,0 +1,115 @@
+.entrance {
+	@include center;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999999999999;
+	background: #000;
+	& .arrow-next {
+		position: fixed;
+		top: 10px;
+		right: 7.5px;
+		height: 37.5px;
+		width: 37.5px;
+		background: url('circle-right.svg') no-repeat center;
+		background-size: contain;
+		z-index: 15;
+		@include center;
+		border-radius: 50%;
+		border: none;
+		outline: none;
+	}
+	& .carousel {
+		height: 100%;
+		width: 100%;
+		// @include center;
+		& .slide {
+			height: 100%;
+			width: 100%;
+			@include center;
+			flex-direction: column;
+			&>div {
+				width: 90%;
+				max-width: 600px;
+				@include center;
+				flex-direction: column;
+				text-align: center;
+				&>img {
+					height: 20vh;
+					margin-bottom: 30px;
+				}
+				&>h1 {
+					margin: 0;
+					margin-bottom: 7.5px;
+					font-size: 9vh;
+					font-weight: 900;
+					background: -webkit-linear-gradient(#eee, #A9ABAE);
+				    -webkit-background-clip: text;
+				    -webkit-text-fill-color: transparent;
+				 	// color: #fff;
+				}
+				&>p {
+					font-size: 3.25vh;
+					margin: 0;
+					color: #fff;
+					letter-spacing: 1.5px;
+				}
+			}
+		}
+		& .slide:nth-of-type(1) {
+			@include background-right;
+			&>div {
+				margin-top: -7.5vh;
+			}
+		}
+		& .slide:nth-of-type(2) {
+			@include background-top;
+			&>div {
+				margin-top: -7.5vh;
+			}
+		}
+		& .slide:nth-of-type(3) {
+			@include background-right;
+			&>div {
+				margin-top: -7.5vh;
+			}
+			& p > img {
+				height: 3.5vh;
+				margin: 0 4.5px;
+			}
+		}
+		& .slide:nth-of-type(4) {
+			& h1 {
+				font-size: 9vh;
+				background: -webkit-linear-gradient(#eee, #757777);
+			    -webkit-background-clip: text;
+			    -webkit-text-fill-color: transparent;
+			}
+		}
+	}
+}
+
+.flickity-page-dots {
+  position: absolute;
+  bottom: 20px;
+}
+/* white circles */
+.flickity-page-dots .dot {
+  width: 7px;
+  height: 7px;
+  margin: 7px;
+  opacity: 1;
+  background: transparent;
+  border: 1.5px solid #1297FF;
+}
+/* fill-in selected dot */
+.flickity-page-dots .dot.is-selected {
+  background: #1297FF;
+}
+
+.entrance-hide {
+	transform: translateX(-100%);
+	transition-duration: 0.5s;
+}

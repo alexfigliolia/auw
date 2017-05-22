@@ -1,5 +1,6 @@
 @import './src/variables';
 @import './src/reset';
+@import './src/flickity';
 
 body {
   margin: 0;
@@ -8,6 +9,7 @@ body {
   font-family: "Raleway", sans-serif;
 }
 
+@import './src/entrance/entrance';
 @import './src/header/header';
 @import './src/login/login';
 @import './src/page/page';

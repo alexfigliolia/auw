@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Quagga from 'quagga';
+import Entrance from './entrance/Entrance';
 import Header from './header/Header';
 import Login from './login/Login';
 import Page from './page/Page';
@@ -19,7 +20,8 @@ class App extends Component {
   		],
   		scanned : 0,
       loginClasses: "login",
-      pageClasses: "page"
+      pageClasses: "page",
+      entranceClasses: "entrance"
   	}
   }
 
@@ -52,7 +54,8 @@ class App extends Component {
     console.log(e + ' ' + p);
     this.setState({
       loginClasses: "login login-hide",
-      pageClasses: "page page-show"
+      pageClasses: "page page-show",
+      entranceClasses: "entrance entrance-hide"
     });
     setTimeout(function(){
       this.getSpot();
@@ -87,14 +90,13 @@ class App extends Component {
         <Header 
           handleCode={this.handleCode.bind(this)} />
 
-        <Login 
-          classes={this.state.loginClasses}
-          login={this.login.bind(this)} />
+        <Entrance 
+          login={this.login.bind(this)}
+          entranceClasses={this.state.entranceClasses} />
 
         <Page
           pageClasses={this.state.pageClasses}
           squareClasses={this.state.squareClasses} />
-
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Quagga from 'quagga';
 
 class Page extends Component {
   componentDidMount(){
@@ -11,6 +12,7 @@ class Page extends Component {
   		p.style.height = (window.innerHeight - h) + 'px';
   	});
   }
+
   render() {
     return (
     	<div ref='page' className={this.props.pageClasses} id="page">
