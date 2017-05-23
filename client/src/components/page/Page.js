@@ -20,7 +20,7 @@ class Page extends Component {
     		<div className={this.props.squareClasses[1]}>
           <div className="circle"></div>
         </div>
-    		<div className={this.props.squareClasses[2]}>
+    		<div className={this.props.squareClasses[2]} id='circleGift'>
           <div className="circle gift" onClick={this.props.gift}></div>
         </div>
     		<div className={this.props.squareClasses[3]}>

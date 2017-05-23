@@ -1,0 +1,106 @@
+.bag-overlay {
+	position: absolute;
+	top: 60px;
+	left: 0;
+	height: calc(100vh - 60px);
+	width: 100%;
+	background: #252626;
+	@include center;
+	@include headerShadow;
+	transform: scaleY(0);
+	transform-origin: 50% 0%;
+	transition-duration: 0.4s;
+	transition-delay: 0.2s;
+	@media #{$mq-800} {
+		top: 80px;
+	}
+	&>div {
+		@include center;
+		flex-direction: column;
+		width: 100%;
+		margin-top: -10%;
+		&>h1 {
+			font-weight: 900;
+			font-size: 9vh;
+			background: -webkit-linear-gradient(#eee, #757777);
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		    margin-bottom: 20px;
+		    transform: translateY(-100px);
+		    opacity: 0;
+		    transition-duration: 0.25s;
+		    transition-delay: 0s;
+		    &>img {
+		    	height: 9vh;
+		    	width: 9vh;
+		    	margin-left: 10px;
+		    	margin-right: 2.5px;
+		    }
+		}
+		&>.saved-gifts{
+			@include center;
+			width: 90%;
+			min-height: 100px;
+			border-top: 1px solid #005C97;
+			border-bottom: 1px solid #005C97;
+			margin-bottom: 10px;
+			transform: translateY(-100px);
+		    opacity: 0;
+		    transition-duration: 0.25s;
+		    transition-delay: 0s;
+			&>h2 {
+				color: #fff;
+				font-weight: 100;
+				font-size: 1.25em;
+				&>img {
+					height: 20px;
+					width: 20px;
+					margin: 0 5px;
+				}
+			}
+		}
+		&>.close-bag {
+			background: #005C97;
+			@include headerShadow;
+			color: #fff;
+			outline: none;
+			border: none;
+			margin-top: 10px;
+			width: 200px;
+			height: 50px;
+			transform: translateY(-100px);
+		    opacity: 0;
+		    transition-duration: 0.25s;
+		    transition-delay: 0s;
+		    &:hover {
+		    	transform: scale(1.05);
+		    	transition-delay: 0s;
+		    	transition-duration: 0.2s;
+		    }
+		}
+	}
+}
+
+.bag-overlay-show {
+	transform: scaleY(1);
+	transition-duration: 0.4s;
+	transition-delay: 0s;
+	&>div>h1 {
+		transform: translateY(0px);
+		opacity: 1;
+		transition-duration: 0.3s;
+		transition-delay: 0.3s;
+	}
+	&>div>.saved-gifts{
+		transform: translateY(0px);
+		opacity: 1;
+		transition-duration: 0.3s;
+		transition-delay: 0.25s;
+	}
+	&>div>.close-bag{
+		transform: translateY(0px);
+		opacity: 1;
+		transition-duration: 0.3s;
+		transition-delay: 0.2s;
+	}
+}

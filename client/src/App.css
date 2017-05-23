@@ -628,12 +628,33 @@ body {
     justify-content: space-between;
     width: 100%;
     max-width: 1220px; }
+    .header > div > button {
+      width: 60px;
+      height: 60px;
+      border: none;
+      background: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      outline: none; }
+      @media (min-width: 800px) {
+        .header > div > button {
+          width: 80px;
+          height: 80px; } }
+    .header > div > .bag {
+      background: url("../public/bag2.svg") no-repeat center;
+      background-size: 60%;
+      transition-duration: 0.3s; }
+      @media (min-width: 800px) {
+        .header > div > .bag {
+          background-size: 65%; } }
+    .header > div > .bag-rotate {
+      transform: rotate(180deg); }
     .header > div > .logo {
       cursor: pointer;
       font-family: "Raleway", sans-serif;
       font-weight: 900;
-      font-size: 1.5em;
-      margin-left: 10px;
+      font-size: 1.25em;
       background: #005C97;
       /* fallback for old browsers */
       background: -webkit-linear-gradient(to top, #363795, #005C97);
@@ -648,25 +669,21 @@ body {
         .header > div > .logo {
           font-size: 2.75em; } }
     .header > div > .scan {
-      width: 60px;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       background: url("../public/camera.svg") no-repeat center;
-      background-size: 70%;
-      cursor: pointer;
-      position: absolute;
-      top: 0;
-      right: 0; }
-      @media (min-width: 800px) {
-        .header > div > .scan {
-          width: 80px;
-          height: 80px; } }
-    .header > div > .get-file {
-      opacity: 0;
-      height: 60px;
-      width: 60px; }
+      background-size: 67.5%;
+      position: relative; }
+      .header > div > .scan > .get-file {
+        opacity: 0;
+        height: 60px;
+        width: 60px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: pointer; }
+        @media (min-width: 800px) {
+          .header > div > .scan > .get-file {
+            height: 80px;
+            width: 80px; } }
 
 @keyframes wave {
   0% {
@@ -942,7 +959,9 @@ body {
       top: 25%;
       content: url("../public/gift.svg");
       height: 50%;
-      width: 50%; }
+      width: 50%;
+      opacity: 1;
+      transition: opacity 0.3s 1s; }
   .page > .square.square-on {
     position: relative; }
     .page > .square.square-on::before {
@@ -966,7 +985,7 @@ body {
   .page > .square.square-on:nth-of-type(2)::before {
     transition-duration: 0.3s;
     transition-delay: 0.3s; }
-  .page > .square.square-on:nth-of-type(3) > .circle {
+  .page > .square.square-on:nth-of-type(3) > .circle.gift {
     transform: scale(1) rotate(0deg);
     transition-duration: 0.3s;
     transition-delay: 0.75s; }
@@ -1064,22 +1083,247 @@ body {
   transition-delay: 1.5s;
   transform: scale(1) rotate(0deg); }
 
-.square.square-on.gift-on > .circle.gift {
-  background: #fff;
-  animation: scale 2s forwards; }
-  .square.square-on.gift-on > .circle.gift::after {
-    display: none; }
+#circleGift .gift-timing {
+  transition-duration: 1s;
+  transition-delay: 0s;
+  transition-timing-function: ease-out; }
+
+#circleGift .gift-expload {
+  transform: scale(20);
+  transition-duration: 1s;
+  background: #353535;
+  transition-timing-function: ease-out;
+  transition-delay: 0s; }
+  @media (min-width: 800px) {
+    #circleGift .gift-expload {
+      transform: scale(30); } }
+  #circleGift .gift-expload::after {
+    opacity: 0;
+    transition: opacity 0s 0s; }
 
 .page-show {
   transform: translateX(0%); }
 
-@keyframes scale {
+.bag-overlay {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  height: calc(100vh - 60px);
+  width: 100%;
+  background: #252626;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  transform: scaleY(0);
+  transform-origin: 50% 0%;
+  transition-duration: 0.4s;
+  transition-delay: 0.2s; }
+  @media (min-width: 800px) {
+    .bag-overlay {
+      top: 80px; } }
+  .bag-overlay > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-top: -10%; }
+    .bag-overlay > div > h1 {
+      font-weight: 900;
+      font-size: 9vh;
+      background: -webkit-linear-gradient(#eee, #757777);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      transform: translateY(-100px);
+      opacity: 0;
+      transition-duration: 0.25s;
+      transition-delay: 0s; }
+      .bag-overlay > div > h1 > img {
+        height: 9vh;
+        width: 9vh;
+        margin-left: 10px;
+        margin-right: 2.5px; }
+    .bag-overlay > div > .saved-gifts {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 90%;
+      min-height: 100px;
+      border-top: 1px solid #005C97;
+      border-bottom: 1px solid #005C97;
+      margin-bottom: 10px;
+      transform: translateY(-100px);
+      opacity: 0;
+      transition-duration: 0.25s;
+      transition-delay: 0s; }
+      .bag-overlay > div > .saved-gifts > h2 {
+        color: #fff;
+        font-weight: 100;
+        font-size: 1.25em; }
+        .bag-overlay > div > .saved-gifts > h2 > img {
+          height: 20px;
+          width: 20px;
+          margin: 0 5px; }
+    .bag-overlay > div > .close-bag {
+      background: #005C97;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+      color: #fff;
+      outline: none;
+      border: none;
+      margin-top: 10px;
+      width: 200px;
+      height: 50px;
+      transform: translateY(-100px);
+      opacity: 0;
+      transition-duration: 0.25s;
+      transition-delay: 0s; }
+      .bag-overlay > div > .close-bag:hover {
+        transform: scale(1.05);
+        transition-delay: 0s;
+        transition-duration: 0.2s; }
+
+.bag-overlay-show {
+  transform: scaleY(1);
+  transition-duration: 0.4s;
+  transition-delay: 0s; }
+  .bag-overlay-show > div > h1 {
+    transform: translateY(0px);
+    opacity: 1;
+    transition-duration: 0.3s;
+    transition-delay: 0.3s; }
+  .bag-overlay-show > div > .saved-gifts {
+    transform: translateY(0px);
+    opacity: 1;
+    transition-duration: 0.3s;
+    transition-delay: 0.25s; }
+  .bag-overlay-show > div > .close-bag {
+    transform: translateY(0px);
+    opacity: 1;
+    transition-duration: 0.3s;
+    transition-delay: 0.2s; }
+
+.choose-gift {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #353535;
+  transform: scale(0);
+  transition-duration: 0s;
+  transition-delay: 0.25s; }
+  @media (min-width: 800px) {
+    .choose-gift {
+      top: 80px; } }
+  .choose-gift > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%; }
+    .choose-gift > div > h1 {
+      font-size: 9vh;
+      margin: 0;
+      margin-bottom: 5px;
+      font-weight: 900;
+      background: -webkit-linear-gradient(#eee, #757777);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transform: translateY(100px);
+      opacity: 0;
+      transition-duration: 0.25s;
+      transition-delay: 0.1s; }
+    .choose-gift > div > h2 {
+      font-weight: 900;
+      background: -webkit-linear-gradient(#eee, #757777);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+      transform: translateY(100px);
+      opacity: 0;
+      transition-duration: 0.25s;
+      transition-delay: 0.05s; }
+    .choose-gift > div > .arrow {
+      height: 50px;
+      width: 50px;
+      background: url("../public/down.svg") no-repeat center;
+      background-size: 70%;
+      animation: jump 1.5s infinite;
+      margin: 5px 0;
+      transform: translateY(100px);
+      opacity: 0;
+      transition-duration: 0.25s;
+      transition-delay: 0s; }
+    .choose-gift > div > .gift-choices {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      justify-items: flex-start;
+      width: 90%;
+      max-width: 600px; }
+      .choose-gift > div > .gift-choices > h3 {
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        margin: 0;
+        color: #fff;
+        padding: 10px 0;
+        margin: 10px 0;
+        width: 100%;
+        cursor: pointer;
+        transition-duration: 0.25s;
+        transform: translateY(100px);
+        opacity: 0;
+        transition-delay: 0s; }
+        .choose-gift > div > .gift-choices > h3:hover {
+          background: #fff;
+          color: #353535; }
+      .choose-gift > div > .gift-choices > h3:first-of-type {
+        margin-top: 15px; }
+      .choose-gift > div > .gift-choices > h3:last-of-type {
+        margin-bottom: 15px; }
+
+@keyframes jump {
   0% {
-    background: #fff;
-    transform: scale(1); }
+    transform: translateY(0); }
+  50% {
+    transform: translateY(10px); }
   100% {
-    background: #fff;
-    transform: scale(25); } }
+    transform: translateY(0px); } }
+
+.choose-gift-show {
+  transform: scale(1);
+  transition-duration: 0s;
+  transition-delay: 0s; }
+  .choose-gift-show > div > h1 {
+    transform: translateY(0px);
+    opacity: 1;
+    transition-duration: 0.25s;
+    transition-delay: 0.15s; }
+  .choose-gift-show > div > h2 {
+    transform: translateY(0px);
+    opacity: 1;
+    transition-duration: 0.25s;
+    transition-delay: 0.2s; }
+  .choose-gift-show > div > .arrow {
+    transform: translateY(0px);
+    opacity: 1;
+    transition-duration: 0.25s;
+    transition-delay: 0.25s; }
+  .choose-gift-show > div > .gift-choices > h3 {
+    transform: translateY(0px);
+    opacity: 1;
+    transition-duration: 0.25s;
+    transition-delay: 0.3s; }
+    .choose-gift-show > div > .gift-choices > h3:hover {
+      background: #fff;
+      color: #353535;
+      transition-delay: 0s; }
 
 .App {
   text-align: center;
