@@ -67,10 +67,24 @@
 				color: #fff;
 				font-weight: 900;
 				@include center;
+				cursor: pointer;
+				position: relative;
 				&>img {
 					height: 20px;
 					margin-right: 10px;
 					align-self: flex-start;
+				}
+			}
+			&>.use-the-gift {
+				&::after {
+					content: "";
+					position: absolute;
+					top: -2.5px;
+					right: -30px;
+					height: 25px;
+					width: 25px;
+					background: url('../public/check.svg');
+					background-size: 100% 100%;
 				}
 			}
 		}

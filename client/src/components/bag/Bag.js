@@ -23,11 +23,11 @@ class Bag extends Component {
             }
             {
               this.props.gift1 !== '' &&
-                <h3><img src="gift.svg" alt="gift" />{this.props.gift1}</h3>
+                <h3 className="saved-gift" data-gift={this.props.gift1} onClick={this.props.useGift}><img src="gift.svg" alt="gift" />{this.props.gift1}</h3>
             }
             {
               this.props.gift2 !== '' &&
-                <h3><img src="gift.svg" alt="gift" />{this.props.gift2}</h3>
+                <h3 className="saved-gift" data-gift={this.props.gift2} onClick={this.props.useGift}><img src="gift.svg" alt="gift" />{this.props.gift2}</h3>
             }
           </div>
           <button 

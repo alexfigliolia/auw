@@ -28,8 +28,12 @@ class App extends Component {
       bagIconClasses: "bag",
       chooseGiftClasses: "choose-gift",
       savedGift1: "",
-      savedGift2: ""
+      savedGift2: "",
+      giftUsing: ""
     }
+  }
+  componentDidMount(){
+    this.getSpot();
   }
   getSpot(){
     var squareOn = this.state.scanned;
@@ -72,17 +76,41 @@ class App extends Component {
         decoder: {
             readers: ["code_128_reader"] // List of active readers
         },
+        numOfWorkers: 3,  // Needs to be 0 when used within node
         locate: true, // try to locate the barcode in the image
-        src: URL.createObjectURL(e.target.files[0]) // or 'data:image/jpg;base64,' + data
+        src: URL.createObjectURL(e.target.files[0]), // or 'data:image/jpg;base64,' + data
+        locator: {
+            patchSize: "large",
+            halfSample: false
+        }
     }, function(result){
         if(result.codeResult) {
             console.log("result", result.codeResult.code);
-            if(result.codeResult.code === '0001285112001000040801'){
+            if(result.codeResult.code === '00786589'){
               self.scan();
+              e.target.value = null;
+            }
+            if(result.codeResult.code === '00786590'){
+              var gu = self.state.giftUsing,
+                  g1 = self.state.savedGift1,
+                  g2 = self.state.savedGift2;
+              if(gu === g1) {
+                self.setState({
+                  giftUsing: "",
+                  savedGift1: ""
+                });
+              }
+              if(gu === g2) {
+                self.setState({
+                  giftUsing: "",
+                  savedGift2: ""
+                });
+              }
               e.target.value = null;
             }
         } else {
             console.log("not detected");
+            e.target.value = null;
         }
     });
   }
@@ -110,7 +138,7 @@ class App extends Component {
         this.setState({
           chooseGiftClasses: "choose-gift choose-gift-show"
         });
-      }.bind(this), 800);
+      }.bind(this), 600);
     }
     if(e.target.className === 'circle gift gift-timing' && e.target.parentNode.className === 'square square-on') {
       console.log(e.target);
@@ -120,7 +148,7 @@ class App extends Component {
         this.setState({
           chooseGiftClasses: "choose-gift choose-gift-show"
         });
-      }.bind(this), 800);
+      }.bind(this), 600);
     }
   }
   scaleDown(e){
@@ -133,6 +161,17 @@ class App extends Component {
       savedGift2: e
     });
     d.classList.remove('gift-expload');
+  }
+  useGift(e){
+    var sg = document.getElementsByClassName('saved-gift'),
+        g = e.target.dataset.gift;
+    for(var i = 0; i < sg.length; i++) {
+      sg[i].classList.remove('use-the-gift');
+    }
+    e.target.classList.add('use-the-gift');
+    this.setState({
+      giftUsing: g
+    });
   }
   render() {
     return (
@@ -157,7 +196,8 @@ class App extends Component {
           bagClasses={this.state.bagClasses}
           toggleBag={this.toggleBag.bind(this)}
           gift1={this.state.savedGift1}
-          gift2={this.state.savedGift2} />
+          gift2={this.state.savedGift2}
+          useGift={this.useGift.bind(this)} />
 
         <Gift 
           chooseGiftClasses={this.state.chooseGiftClasses}
