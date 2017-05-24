@@ -30,13 +30,14 @@
 		    }
 		}
 		&>.bag{
+			position: relative;
 			background: url('../public/bag2.svg') no-repeat center;
 			background-size: 60%;
 			transition-duration: 0.3s;
+			z-index: 5;
 			@media #{$mq-800} {
 		    	background-size: 65%;
 		    }
-
 		}
 		&>.bag-rotate{
 			transform: rotate(180deg);

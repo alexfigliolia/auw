@@ -47,6 +47,7 @@
 	&>.square:nth-of-type(odd) {
 		border-right: 1px solid #fff;
 	}
+	//Set Numbers
 	&>.square:nth-of-type(1)::after {
 		content: "1st";
 		@include center;
@@ -67,14 +68,10 @@
 		width: 100%;
 		font-size: 6vh;
 	}
-	&>.square:nth-of-type(3)::after {
-		content: url('../public/gift.svg');
-		height: 30%;
-		width: 30%;
+	&>.square:nth-of-type(3) {
+		background: url('../public/gift.svg') no-repeat center;
+		background-size: 37.5% 37.5%;
 		@include center;
-		position: absolute;
-		top: 35%;
-		left: 35%;
 	}
 	&>.square:nth-of-type(4)::after {
 		content: "4th";
@@ -96,90 +93,12 @@
 		width: 100%;
 		font-size: 6vh;
 	}
-	&>.square:nth-of-type(6)::after {
-		content: url('../public/gift.svg');
-		height: 30%;
-		width: 30%;
+	&>.square:nth-of-type(6) {
+		background: url('../public/gift.svg') no-repeat center;
+		background-size: 37.5% 37.5%;
 		@include center;
-		position: absolute;
-		top: 35%;
-		left: 35%;
-		// height: 100%;
-		// width: 100%;
 	}
-	&>.square:nth-of-type(1)>.circle::after {
-		content: "1st";
-		@include center;
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		font-size: 6vh;
-	}
-	&>.square:nth-of-type(2)>.circle::after {
-		content: "2nd";
-		@include center;
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		font-size: 6vh;
-	}
-	&>.square:nth-of-type(3)>.circle::after {
-		content: url('../public/gift.svg');
-		height: 30%;
-		width: 30%;
-		@include center;
-		position: absolute;
-		top: 35%;
-		left: 35%;
-	}
-	&>.square:nth-of-type(4)>.circle::after {
-		content: "4th";
-		@include center;
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		font-size: 6vh;
-	}
-	&>.square:nth-of-type(5)>.circle::after {
-		content: "5th";
-		@include center;
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		font-size: 6vh;
-	}
-	&>.square:nth-of-type(6)>.circle::after {
-		content: url('../public/gift.svg');
-		height: 30%;
-		width: 30%;
-		@include center;
-		position: absolute;
-		top: 35%;
-		left: 35%;
-	}
-	&>.square:nth-of-type(3n) {
-		&>.circle {
-			color: #44CE5D;
-			&::after {
-				@include center;
-				left: 25%;
-				top: 25%;
-				content: url('../public/gift.svg');
-				height: 50%;
-				width: 50%;
-				opacity: 1;
-				transition: opacity 0.3s 1s;
-			}
-		}
-	}
+	//Active Squares Classes
 	&>.square.square-on {
 		position: relative;
 		&::before {
@@ -198,6 +117,16 @@
 			transform: scale(1) rotate(0deg);
 			transition-duration: 0.3s;
 			transition-delay: 0.15s;
+			&::after {
+				content: "1st";
+				@include center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				font-size: 6vh;
+			}
 		}
 		&::before{
 			transition-duration: 0.3s;
@@ -209,6 +138,16 @@
 			transform: scale(1) rotate(0deg);
 			transition-duration: 0.3s;
 			transition-delay: 0.45s;
+			&::after {
+				content: "2nd";
+				@include center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				font-size: 6vh;
+			}
 		}
 		&::before{
 			transition-duration: 0.3s;
@@ -220,6 +159,17 @@
 			transform: scale(1) rotate(0deg);
 			transition-duration: 0.3s;
 			transition-delay: 0.75s;
+			&::after {
+				content: '';
+				@include center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				background: url('../public/gift.svg') no-repeat 50% 47.5%;
+				background-size: 50% 50%;
+			}
 		}
 		&::before{
 			transition-duration: 0.3s;
@@ -231,6 +181,16 @@
 			transform: scale(1) rotate(0deg);
 			transition-duration: 0.3s;
 			transition-delay: 1.05s;
+			&::after {
+				content: "4th";
+				@include center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				font-size: 6vh;
+			}
 		}
 		&::before{
 			transition-duration: 0.3s;
@@ -242,6 +202,16 @@
 			transform: scale(1) rotate(0deg);
 			transition-duration: 0.3s;
 			transition-delay: 1.35s;
+			&::after {
+				content: "5th";
+				@include center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				font-size: 6vh;
+			}
 		}
 		&::before{
 			transition-duration: 0.3s;
@@ -249,10 +219,21 @@
 		}
 	}
 	&>.square.square-on:nth-of-type(6){
-		&>.circle {
+		&>.circle.gift {
 			transform: scale(1) rotate(0deg);
 			transition-duration: 0.3s;
 			transition-delay: 1.65s;
+			&::after {
+				content: '';
+				@include center;
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				background: url('../public/gift.svg') no-repeat 50% 47.5%;
+				background-size: 50% 50%;
+			}
 		}
 		&::before{
 			transition-duration: 0.3s;
@@ -273,7 +254,7 @@
 		}
 	}
 }
-
+//Completed Square Classes - ::before fills in the lines
 .square.square-complete:nth-of-type(1){
 	&::before {
 		transition-duration: 0.3s;
@@ -347,14 +328,19 @@
 	}
 }
 
-#circleGift .gift-timing {
-	transition-duration: 1s;
-	transition-delay: 0s;
+#circleGift1 .gift-timing,
+#circleGift2 .gift-timing {
+	transition: transform 0.8s 0s, background 0.5s 0.3s;
 	transition-timing-function: ease-out;
+	&::after {
+		opacity: 1;
+		transition: opacity 0.2s 0.8s;
+	}
 }
 
-#circleGift .gift-expload {
-	transform: scale(20);
+#circleGift1 .gift-expload,
+#circleGift2 .gift-expload {
+	transform: scale(19);
 	transition-duration: 1s;
 	background: #353535;
 	transition-timing-function: ease-out;

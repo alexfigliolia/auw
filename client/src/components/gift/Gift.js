@@ -19,9 +19,15 @@ class Gift extends Component {
           <h2>You get to choose a gift!</h2>
           <div className="arrow"></div>
           <div className="gift-choices">
-            <h3 onClick={this.props.scaleDown}>$10 off your next purchase</h3>
-            <h3 onClick={this.props.scaleDown}>A Coffee Thurmace</h3>
-            <h3 onClick={this.props.scaleDown}>Carisma Toate Bag</h3>
+            <h3 
+              onClick={this.props.scaleDown} 
+              data-gift="$10 off your next purchase">$10 off your next purchase</h3>
+            <h3 
+              onClick={this.props.scaleDown} 
+              data-gift="A Coffee Thurmace">A Coffee Thurmace</h3>
+            <h3 
+              onClick={this.props.scaleDown} 
+              data-gift="Carisma Toate Bag">Carisma Toate Bag</h3>
           </div>
         </div>
     	</div>

@@ -17,7 +17,18 @@ class Bag extends Component {
     		<div>
           <h1>Your <img src="gift.svg" alt="gift" />'s.</h1>
           <div className='saved-gifts'>
-            <h2>When you arrive at a <img src="gift.svg" alt="gift" /> it will be saved in your bag</h2>
+            {
+              this.props.gift1 === '' && this.props.gift2 === '' && 
+              <h2>When you arrive at a <img src="gift.svg" alt="gift" /> it will be saved in your bag</h2>
+            }
+            {
+              this.props.gift1 !== '' &&
+                <h3><img src="gift.svg" alt="gift" />{this.props.gift1}</h3>
+            }
+            {
+              this.props.gift2 !== '' &&
+                <h3><img src="gift.svg" alt="gift" />{this.props.gift2}</h3>
+            }
           </div>
           <button 
             className="close-bag"

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Quagga from 'quagga';
 import Entrance from './components/entrance/Entrance.js';
 import Header from './components/header/Header';
-// import Login from './components/login/Login';
 import Page from './components/page/Page';
 import Bag from './components/bag/Bag';
 import Gift from './components/gift/Gift';
@@ -20,17 +19,18 @@ class App extends Component {
         "square",
         "square"
       ],
-      scanned : 2,
+      scanned : 3,
       loginClasses: "login",
       pageClasses: "page page-show",
       entranceClasses: "entrance",
       bagToggle: true,
       bagClasses: "bag-overlay",
       bagIconClasses: "bag",
-      chooseGiftClasses: "choose-gift"
+      chooseGiftClasses: "choose-gift",
+      savedGift1: "",
+      savedGift2: ""
     }
   }
-
   getSpot(){
     var squareOn = this.state.scanned;
     var classes = this.state.squareClasses;
@@ -102,10 +102,17 @@ class App extends Component {
     }
   }
   chooseGift(e){
-    if(e.target.className === 'circle gift' && 
-       e.target.parentNode.className === 'square square-on' ||
-       e.target.className === 'circle gift gift-timing' &&
-       e.target.parentNode.className === 'square square-on' ) {
+    if(e.target.className === 'circle gift' && e.target.parentNode.className === 'square square-on') {
+      console.log(e.target);
+      e.target.classList.add('gift-timing');
+      e.target.classList.add('gift-expload');
+      setTimeout(function(){
+        this.setState({
+          chooseGiftClasses: "choose-gift choose-gift-show"
+        });
+      }.bind(this), 800);
+    }
+    if(e.target.className === 'circle gift gift-timing' && e.target.parentNode.className === 'square square-on') {
       console.log(e.target);
       e.target.classList.add('gift-timing');
       e.target.classList.add('gift-expload');
@@ -116,11 +123,14 @@ class App extends Component {
       }.bind(this), 800);
     }
   }
-  scaleDown(){
-    var d = document.getElementsByClassName('gift-expload')[0];
-    console.log(d);
+  scaleDown(e){
+    var d = document.getElementsByClassName('gift-expload')[0],
+        g = e.target.dataset.gift === undefined? '' : e.target.dataset.gift;
+        e = e.target.dataset.gift2 === undefined? '' : e.target.dataset.gift;
     this.setState({
-      chooseGiftClasses: "choose-gift"
+      chooseGiftClasses: "choose-gift",
+      savedGift1: g,
+      savedGift2: e
     });
     d.classList.remove('gift-expload');
   }
@@ -130,7 +140,9 @@ class App extends Component {
         <Header 
           handleCode={this.handleCode.bind(this)}
           toggleBag={this.toggleBag.bind(this)}
-          iconClasses={this.state.bagIconClasses} />
+          iconClasses={this.state.bagIconClasses}
+          gift1={this.state.savedGift1}
+          gift2={this.state.savedGift2} />
 
         <Entrance 
           login={this.login.bind(this)}
@@ -143,7 +155,9 @@ class App extends Component {
 
         <Bag
           bagClasses={this.state.bagClasses}
-          toggleBag={this.toggleBag.bind(this)} />
+          toggleBag={this.toggleBag.bind(this)}
+          gift1={this.state.savedGift1}
+          gift2={this.state.savedGift2} />
 
         <Gift 
           chooseGiftClasses={this.state.chooseGiftClasses}

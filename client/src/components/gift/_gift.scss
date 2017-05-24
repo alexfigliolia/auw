@@ -8,7 +8,7 @@
 	background: #353535;
 	transform: scale(0);
 	transition-duration: 0s;
-	transition-delay: 0.25s;
+	transition-delay: 0.2s;
 	@media #{$mq-800} {
 		top: 80px;
 	}
@@ -26,8 +26,8 @@
 		    -webkit-text-fill-color: transparent;
 		    transform: translateY(100px);
 		    opacity: 0;
-		    transition-duration: 0.25s;
-		    transition-delay: 0.1s;
+		    transition-duration: 0.2s;
+		    transition-delay: 0s;
 		}
 		&>h2 {
 			font-weight: 900;
@@ -37,8 +37,8 @@
 		    margin: 0;
 		    transform: translateY(100px);
 		    opacity: 0;
-		    transition-duration: 0.25s;
-		    transition-delay: 0.05s;
+		    transition-duration: 0.2s;
+		    transition-delay: 0s;
 		}
 		&>.arrow {
 			height: 50px;
@@ -49,7 +49,7 @@
 			margin: 5px 0;
 			transform: translateY(100px);
 		    opacity: 0;
-		    transition-duration: 0.25s;
+		    transition-duration: 0.2s;
 		    transition-delay: 0s;
 		}
 		&>.gift-choices {
@@ -67,7 +67,7 @@
 				margin: 10px 0;
 				width: 100%;
 				cursor: pointer;
-				transition-duration: 0.25s;
+				transition-duration: 0.2s;
 				transform: translateY(100px);
 		    	opacity: 0;
 		    	transition-delay: 0s;
@@ -106,25 +106,26 @@
 		transform: translateY(0px);
 		opacity: 1;
 		transition-duration: 0.25s;
-		transition-delay: 0.15s;
+		transition-delay: 0.25s;
 	}
 	&>div>h2 {
 		transform: translateY(0px);
 		opacity: 1;
 		transition-duration: 0.25s;
-		transition-delay: 0.2s;
+		transition-delay: 0.35s;
 	}
 	&>div>.arrow {
 		transform: translateY(0px);
 		opacity: 1;
 		transition-duration: 0.25s;
-		transition-delay: 0.25s;
+		transition-delay: 0.45s;
 	}
 	&>div>.gift-choices>h3 {
 		transform: translateY(0px);
 		opacity: 1;
 		transition-duration: 0.25s;
-		transition-delay: 0.3s;
+		transition-delay: 0.45s;
+		transition: transform 0.25s 0.45s, opacity 0.25s 0.45s, background 0.25s 0s, color 0.25s 0s;
 		&:hover {
 			background: #fff;
 			color: #353535;

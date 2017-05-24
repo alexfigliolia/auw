@@ -20,7 +20,7 @@ class Page extends Component {
     		<div className={this.props.squareClasses[1]}>
           <div className="circle"></div>
         </div>
-    		<div className={this.props.squareClasses[2]} id='circleGift'>
+    		<div className={this.props.squareClasses[2]} id='circleGift1'>
           <div className="circle gift" onClick={this.props.gift}></div>
         </div>
     		<div className={this.props.squareClasses[3]}>
@@ -29,7 +29,7 @@ class Page extends Component {
     		<div className={this.props.squareClasses[4]}>
           <div className="circle"></div>
         </div>
-    		<div className={this.props.squareClasses[5]}>
+    		<div className={this.props.squareClasses[5]} id='circleGift2'>
           <div className="circle gift" onClick={this.props.gift}></div>
         </div>
     	</div>

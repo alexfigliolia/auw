@@ -7,6 +7,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   font-family: "Raleway", sans-serif;
+  overflow: hidden;
 }
 
 @import './components/entrance/entrance';
@@ -19,7 +20,7 @@ body {
 .App {
   text-align: center;
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .App-logo {
