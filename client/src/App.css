@@ -494,8 +494,7 @@ body {
   top: 0;
   left: 0;
   z-index: 999999999999;
-  background: #000;
-  display: none; }
+  background: #000; }
   .entrance .arrow-next {
     position: fixed;
     top: 10px;
