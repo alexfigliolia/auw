@@ -924,11 +924,12 @@ body {
       font-size: 6vh; }
   .page > .square.square-on:nth-of-type(2)::before {
     transition-duration: 0.3s;
-    transition-delay: 0.3s; }
+    transition-delay: 0.275s; }
   .page > .square.square-on:nth-of-type(3) > .circle.gift {
     transform: scale(1) rotate(0deg);
     transition-duration: 0.3s;
-    transition-delay: 0.75s; }
+    transition-delay: 0.75s;
+    cursor: pointer; }
     .page > .square.square-on:nth-of-type(3) > .circle.gift::after {
       content: '';
       display: flex;
@@ -941,9 +942,22 @@ body {
       width: 100%;
       background: url("../public/gift.svg") no-repeat 50% 47.5%;
       background-size: 50% 50%; }
+    .page > .square.square-on:nth-of-type(3) > .circle.gift::before {
+      content: "Tap Me!";
+      position: absolute;
+      bottom: -23%;
+      right: -50%;
+      color: #fff;
+      width: 200%;
+      font-size: 3vh;
+      animation: jump 1.5s infinite;
+      text-shadow: 0px 0px 2.5px #000, 0px 0px 5px #000; }
+      @media (min-width: 800px) {
+        .page > .square.square-on:nth-of-type(3) > .circle.gift::before {
+          bottom: -30%; } }
   .page > .square.square-on:nth-of-type(3)::before {
     transition-duration: 0.3s;
-    transition-delay: 0.6s; }
+    transition-delay: 0.55s; }
   .page > .square.square-on:nth-of-type(4) > .circle {
     transform: scale(1) rotate(0deg);
     transition-duration: 0.3s;
@@ -961,7 +975,7 @@ body {
       font-size: 6vh; }
   .page > .square.square-on:nth-of-type(4)::before {
     transition-duration: 0.3s;
-    transition-delay: 0.9s; }
+    transition-delay: 0.825s; }
   .page > .square.square-on:nth-of-type(5) > .circle {
     transform: scale(1) rotate(0deg);
     transition-duration: 0.3s;
@@ -979,11 +993,12 @@ body {
       font-size: 6vh; }
   .page > .square.square-on:nth-of-type(5)::before {
     transition-duration: 0.3s;
-    transition-delay: 1.2s; }
+    transition-delay: 1.1s; }
   .page > .square.square-on:nth-of-type(6) > .circle.gift {
     transform: scale(1) rotate(0deg);
     transition-duration: 0.3s;
-    transition-delay: 1.65s; }
+    transition-delay: 1.65s;
+    cursor: pointer; }
     .page > .square.square-on:nth-of-type(6) > .circle.gift::after {
       content: '';
       display: flex;
@@ -996,9 +1011,22 @@ body {
       width: 100%;
       background: url("../public/gift.svg") no-repeat 50% 47.5%;
       background-size: 50% 50%; }
+    .page > .square.square-on:nth-of-type(6) > .circle.gift::before {
+      content: "Tap Me!";
+      position: absolute;
+      bottom: -23%;
+      right: -50%;
+      color: #fff;
+      width: 200%;
+      font-size: 3vh;
+      animation: jump 1.5s infinite;
+      text-shadow: 0px 0px 2.5px #000, 0px 0px 5px #000; }
+      @media (min-width: 800px) {
+        .page > .square.square-on:nth-of-type(6) > .circle.gift::before {
+          bottom: -30%; } }
   .page > .square.square-on:nth-of-type(6)::before {
     transition-duration: 0.3s;
-    transition-delay: 1.5s; }
+    transition-delay: 1.375s; }
   .page > .square.square-complete {
     position: relative; }
     .page > .square.square-complete > .circle {
@@ -1069,12 +1097,24 @@ body {
   transition-delay: 1.5s;
   transform: scale(1) rotate(0deg); }
 
+@keyframes jump {
+  0% {
+    transform: translateY(0); }
+  50% {
+    transform: translateY(5px); }
+  100% {
+    transform: translateY(0px); } }
+
 #circleGift1 .gift-timing,
 #circleGift2 .gift-timing {
   transition: transform 0.8s 0s, background 0.5s 0.3s;
   transition-timing-function: ease-out; }
   #circleGift1 .gift-timing::after,
   #circleGift2 .gift-timing::after {
+    opacity: 1;
+    transition: opacity 0.2s 0.8s; }
+  #circleGift1 .gift-timing::before,
+  #circleGift2 .gift-timing::before {
     opacity: 1;
     transition: opacity 0.2s 0.8s; }
 
@@ -1091,6 +1131,10 @@ body {
       transform: scale(30); } }
   #circleGift1 .gift-expload::after,
   #circleGift2 .gift-expload::after {
+    opacity: 0;
+    transition: opacity 0s 0s; }
+  #circleGift1 .gift-expload::before,
+  #circleGift2 .gift-expload::before {
     opacity: 0;
     transition: opacity 0s 0s; }
 
@@ -1286,26 +1330,33 @@ body {
       justify-items: flex-start;
       width: 90%;
       max-width: 600px; }
-      .choose-gift > div > .gift-choices > h3 {
-        border-top: 1px solid #fff;
-        border-bottom: 1px solid #fff;
-        margin: 0;
-        color: #fff;
-        padding: 10px 0;
-        margin: 10px 0;
-        width: 100%;
-        cursor: pointer;
-        transition-duration: 0.2s;
-        transform: translateY(100px);
-        opacity: 0;
-        transition-delay: 0s; }
-        .choose-gift > div > .gift-choices > h3:hover {
-          background: #fff;
-          color: #353535; }
-      .choose-gift > div > .gift-choices > h3:first-of-type {
-        margin-top: 15px; }
-      .choose-gift > div > .gift-choices > h3:last-of-type {
-        margin-bottom: 15px; }
+      .choose-gift > div > .gift-choices > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        justify-items: flex-start;
+        width: 100%; }
+        .choose-gift > div > .gift-choices > div > h3 {
+          border-top: 1px solid #fff;
+          border-bottom: 1px solid #fff;
+          margin: 0;
+          color: #fff;
+          padding: 10px 0;
+          margin: 10px 0;
+          width: 100%;
+          cursor: pointer;
+          transition-duration: 0.2s;
+          transform: translateY(100px);
+          opacity: 0;
+          transition-delay: 0s; }
+          .choose-gift > div > .gift-choices > div > h3:hover {
+            background: #fff;
+            color: #353535; }
+        .choose-gift > div > .gift-choices > div > h3:first-of-type {
+          margin-top: 15px; }
+        .choose-gift > div > .gift-choices > div > h3:last-of-type {
+          margin-bottom: 15px; }
 
 @keyframes jump {
   0% {
@@ -1334,13 +1385,13 @@ body {
     opacity: 1;
     transition-duration: 0.25s;
     transition-delay: 0.45s; }
-  .choose-gift-show > div > .gift-choices > h3 {
+  .choose-gift-show > div > .gift-choices > div > h3 {
     transform: translateY(0px);
     opacity: 1;
     transition-duration: 0.25s;
     transition-delay: 0.45s;
     transition: transform 0.25s 0.45s, opacity 0.25s 0.45s, background 0.25s 0s, color 0.25s 0s; }
-    .choose-gift-show > div > .gift-choices > h3:hover {
+    .choose-gift-show > div > .gift-choices > div > h3:hover {
       background: #fff;
       color: #353535;
       transition-delay: 0s; }

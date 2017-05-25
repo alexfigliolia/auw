@@ -29,11 +29,9 @@ class App extends Component {
       chooseGiftClasses: "choose-gift",
       savedGift1: "",
       savedGift2: "",
-      giftUsing: ""
+      giftUsing: "",
+      firstGift: true
     }
-  }
-  componentDidMount(){
-    this.getSpot();
   }
   getSpot(){
     var squareOn = this.state.scanned;
@@ -48,7 +46,6 @@ class App extends Component {
   }
   scan(){
     var s = this.state.scanned + 1;
-    console.log(s);
     this.setState({
       scanned: s
     });
@@ -57,7 +54,6 @@ class App extends Component {
     }.bind(this), 200);
   }
   login(e, p){
-    console.log(e + ' ' + p);
     this.setState({
       loginClasses: "login login-hide",
       pageClasses: "page page-show",
@@ -70,8 +66,6 @@ class App extends Component {
   handleCode(e){
     e.persist()
     var self = this;
-    var bc = e.target.files[0].name;
-    console.log(bc);
     Quagga.decodeSingle({
         decoder: {
             readers: ["code_128_reader"] // List of active readers
@@ -85,7 +79,6 @@ class App extends Component {
         }
     }, function(result){
         if(result.codeResult) {
-            console.log("result", result.codeResult.code);
             if(result.codeResult.code === '00786589'){
               self.scan();
               e.target.value = null;
@@ -109,7 +102,6 @@ class App extends Component {
               e.target.value = null;
             }
         } else {
-            console.log("not detected");
             e.target.value = null;
         }
     });
@@ -131,9 +123,13 @@ class App extends Component {
   }
   chooseGift(e){
     if(e.target.className === 'circle gift' && e.target.parentNode.className === 'square square-on') {
-      console.log(e.target);
       e.target.classList.add('gift-timing');
       e.target.classList.add('gift-expload');
+      if(e.target.parentNode.id !== 'circleGift1'){
+        this.setState({
+          firstGift: false
+        });
+      }
       setTimeout(function(){
         this.setState({
           chooseGiftClasses: "choose-gift choose-gift-show"
@@ -141,9 +137,13 @@ class App extends Component {
       }.bind(this), 600);
     }
     if(e.target.className === 'circle gift gift-timing' && e.target.parentNode.className === 'square square-on') {
-      console.log(e.target);
       e.target.classList.add('gift-timing');
       e.target.classList.add('gift-expload');
+      if(e.target.parentNode.id !== 'circleGift1'){
+        this.setState({
+          firstGift: false
+        });
+      }
       setTimeout(function(){
         this.setState({
           chooseGiftClasses: "choose-gift choose-gift-show"
@@ -153,13 +153,21 @@ class App extends Component {
   }
   scaleDown(e){
     var d = document.getElementsByClassName('gift-expload')[0],
-        g = e.target.dataset.gift === undefined? '' : e.target.dataset.gift;
-        e = e.target.dataset.gift2 === undefined? '' : e.target.dataset.gift;
-    this.setState({
-      chooseGiftClasses: "choose-gift",
-      savedGift1: g,
-      savedGift2: e
-    });
+        g;
+    if(e.target.className === 'gift1') {
+      g = e.target.dataset.gift;
+      this.setState({
+        chooseGiftClasses: "choose-gift",
+        savedGift1: g,
+      });
+    }
+    if(e.target.className === 'gift2') {
+      g = e.target.dataset.gift2;
+      this.setState({
+        chooseGiftClasses: "choose-gift",
+        savedGift2: g,
+      });
+    }
     d.classList.remove('gift-expload');
   }
   useGift(e){
@@ -201,7 +209,8 @@ class App extends Component {
 
         <Gift 
           chooseGiftClasses={this.state.chooseGiftClasses}
-          scaleDown={this.scaleDown.bind(this)} />
+          scaleDown={this.scaleDown.bind(this)}
+          whichGift={this.state.firstGift} />
 
       </div>
     );
