@@ -33,9 +33,6 @@ class App extends Component {
       firstGift: true
     }
   }
-  componentDidMount() {
-    this.getSpot();
-  }
   getSpot(){
     var squareOn = this.state.scanned;
     var classes = this.state.squareClasses;
