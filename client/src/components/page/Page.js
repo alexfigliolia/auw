@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Quagga from 'quagga';
 
 class Page extends Component {
   componentDidMount(){
@@ -12,7 +11,6 @@ class Page extends Component {
   		p.style.height = (window.innerHeight - h) + 'px';
   	});
   }
-
   render() {
     return (
     	<div ref='page' className={this.props.pageClasses} id="page">
@@ -22,8 +20,8 @@ class Page extends Component {
     		<div className={this.props.squareClasses[1]}>
           <div className="circle"></div>
         </div>
-    		<div className={this.props.squareClasses[2]}>
-          <div className="circle"></div>
+    		<div className={this.props.squareClasses[2]} id='circleGift1'>
+          <div className="circle gift" onClick={this.props.gift}></div>
         </div>
     		<div className={this.props.squareClasses[3]}>
           <div className="circle"></div>
@@ -31,8 +29,8 @@ class Page extends Component {
     		<div className={this.props.squareClasses[4]}>
           <div className="circle"></div>
         </div>
-    		<div className={this.props.squareClasses[5]}>
-          <div className="circle"></div>
+    		<div className={this.props.squareClasses[5]} id='circleGift2'>
+          <div className="circle gift" onClick={this.props.gift}></div>
         </div>
     	</div>
     );

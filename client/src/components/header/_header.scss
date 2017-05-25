@@ -17,12 +17,37 @@
 		justify-content: space-between;
 		width: 100%;
 		max-width: 1220px;
+		&>button {
+			width: 60px;
+			height: 60px;
+			border: none;
+			background: none;
+			@include center;
+			outline: none;
+			@media #{$mq-800} {
+		    	width: 80px;
+				height: 80px;
+		    }
+		}
+		&>.bag{
+			position: relative;
+			background: url('bag2.svg') no-repeat center;
+			background-size: 60%;
+			transition-duration: 0.3s;
+			z-index: 5;
+			@media #{$mq-800} {
+		    	background-size: 65%;
+		    }
+		}
+		&>.bag-rotate{
+			transform: rotate(180deg);
+		}
 		&>.logo{
 			cursor: pointer;
 			font-family: "Raleway", sans-serif;
 			font-weight: 900;
-			font-size: 1.5em;
-			margin-left: 10px;
+			font-size: 1.25em;
+			// margin-left: 10px;
 		  	@include background-top;
 		    -webkit-background-clip: text;
 		    -webkit-text-fill-color: transparent;
@@ -33,24 +58,22 @@
 		    }
 		}
 		&>.scan {
-			width: 60px;
-			height: 60px;
-			@include center;
 			background: url('camera.svg') no-repeat center;
-			background-size: 70%;
-			cursor: pointer;
-			position: absolute;
-			top: 0;
-			right: 0;
-			@media #{$mq-800} {
-		    	width: 80px;
-				height: 80px;
-		    }
-		}
-		&>.get-file{
-			opacity: 0;
-			height: 60px;
-			width: 60px;
+			background-size: 67.5%;
+			position: relative;
+			&>.get-file{
+				opacity: 0;
+				height: 60px;
+				width: 60px;
+				position: absolute;
+				top: 0;
+				left: 0;
+				cursor: pointer;
+				@media #{$mq-800} {
+					height: 80px;
+					width: 80px;
+				}
+			}
 		}
 	}
 }
