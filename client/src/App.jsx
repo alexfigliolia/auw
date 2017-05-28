@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor'
 import Quagga from 'quagga';
-import Entrance from './components/entrance/Entrance.js';
-import Loader from './components/loader/Loader';
-import Header from './components/header/Header';
-import Page from './components/page/Page';
-import Bag from './components/bag/Bag';
-import Gift from './components/gift/Gift';
-import '../App.css';
+import Entrance from './components/entrance/Entrance.jsx';
+import Loader from './components/loader/Loader.jsx';
+import Header from './components/header/Header.jsx';
+import Page from './components/page/Page.jsx';
+import Bag from './components/bag/Bag.jsx';
+import Gift from './components/gift/Gift.jsx';
 
 class App extends Component {
   constructor(props) {
