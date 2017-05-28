@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Meteor } from 'meteor/meteor'
 import Quagga from 'quagga';
 import Entrance from './components/entrance/Entrance.js';
+import Loader from './components/loader/Loader';
 import Header from './components/header/Header';
 import Page from './components/page/Page';
 import Bag from './components/bag/Bag';
@@ -11,15 +13,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      squareClasses : [
-        "square",
-        "square",
-        "square",
-        "square",
-        "square",
-        "square"
-      ],
-      scanned : 2,
+      squareClasses : ["square", "square", "square", "square", "square", "square"],
+      scanned : null,
       loginClasses: "login",
       pageClasses: "page page-show",
       entranceClasses: "entrance",
@@ -27,12 +22,51 @@ class App extends Component {
       bagClasses: "bag-overlay",
       bagIconClasses: "bag",
       chooseGiftClasses: "choose-gift",
-      savedGift1: "",
-      savedGift2: "",
+      savedGift1: null,
+      savedGift2: null,
       giftUsing: "",
-      firstGift: true
+      firstGift: true,
+      users: this.getMeteorData()
     }
   }
+  getMeteorData(){
+    var self = this;
+    Meteor.subscribe('userData', function(){
+      if(Meteor.user() !== null && Meteor.user() !== undefined) {
+        var s = Meteor.user();
+        self.setState({
+          scanned: s.spot,
+          savedGift1: s.savedGift1,
+          savedGift2: s.savedGift2
+        });
+        setTimeout(function(){
+          self.handleSub();
+        }.bind(self), 1000);
+        console.log(s);
+      } 
+    });
+    return { isAuthenticated: Meteor.userId() !== null };
+  }
+  componentWillMount(){
+    if (!this.state.users.isAuthenticated) {
+      console.log('not authenticated on load');
+    } else {
+      this.setState({
+        loginClasses: "login login-hide",
+        pageClasses: "page page-show",
+        entranceClasses: "entrance entrance-hide"
+      });
+    }
+  }
+  handleSub(){
+    if (!this.state.users.isAuthenticated) {
+      console.log('not authenticated on load');
+    } else {
+      console.log('authenticated on load');
+      this.getSpot();
+    }
+  }
+
   getSpot(){
     var squareOn = this.state.scanned;
     var classes = this.state.squareClasses;
@@ -46,22 +80,83 @@ class App extends Component {
   }
   scan(){
     var s = this.state.scanned + 1;
-    this.setState({
-      scanned: s
-    });
-    setTimeout(function(){
-      this.getSpot();
-    }.bind(this), 200);
+    if(s === 3 && this.state.savedGift1 === null) {
+      var g = document.getElementsByClassName('gift')[0];
+      g.classList.add('gift-timing');
+      g.classList.add('gift-expload');
+      if(g.parentNode.id !== 'circleGift1'){
+        this.setState({
+          firstGift: false
+        });
+      }
+      setTimeout(function(){
+        this.setState({
+          chooseGiftClasses: "choose-gift choose-gift-show"
+        });
+      }.bind(this), 600);
+    } else if(s === 6 && this.state.savedGift2 === null){
+      var g = document.getElementsByClassName('gift')[1];
+      g.classList.add('gift-timing');
+      g.classList.add('gift-expload');
+      if(g.parentNode.id !== 'circleGift1'){
+        this.setState({
+          firstGift: false
+        });
+      }
+      setTimeout(function(){
+        this.setState({
+          chooseGiftClasses: "choose-gift choose-gift-show"
+        });
+      }.bind(this), 600);
+    } else {
+      s = parseInt(s);
+      this.setState({
+        scanned: s
+      });
+      setTimeout(function(){
+        this.getSpot();
+      }.bind(this), 200);
+      var i = Meteor.userId();
+      Meteor.call('user.updateSpot', i, s);
+    }
   }
   login(e, p){
-    this.setState({
-      loginClasses: "login login-hide",
-      pageClasses: "page page-show",
-      entranceClasses: "entrance entrance-hide"
+    Meteor.loginWithPassword(e, p, (err) => {
+      if(err){
+        console.log(err.reason);
+        if(err.reason === 'User not found') {
+          Accounts.createUser({email: e, spot: 0, password: p}, (err) => {
+            if(err){
+              console.log(err.reason);
+            } else {
+              console.log('creating new user');
+              Meteor.loginWithPassword(e, p, (err) => {
+                if(err) {
+                  console.log(err.reason);
+                } else {
+                  console.log(this.state.users);
+                  console.log('logging in new user');
+                  this.setBoard();
+                  setTimeout(function(){
+                    this.getSpot();
+                  }.bind(this), 800);
+                }
+              });
+            }
+          });
+        }
+      } else {
+        if (!this.state.users.isAuthenticated) {
+          console.log(this.state.users);
+        } else {
+          console.log(this.state.users);
+        }
+        this.setBoard();
+        setTimeout(function(){
+          this.getSpot();
+        }.bind(this), 600);
+      }
     });
-    setTimeout(function(){
-      this.getSpot();
-    }.bind(this), 600);
   }
   handleCode(e){
     e.persist()
@@ -89,15 +184,15 @@ class App extends Component {
                   g2 = self.state.savedGift2;
               if(gu === g1) {
                 self.setState({
-                  giftUsing: "",
-                  savedGift1: ""
+                  giftUsing: ""
                 });
+                self.removeGift(0);
               }
               if(gu === g2) {
                 self.setState({
-                  giftUsing: "",
-                  savedGift2: ""
+                  giftUsing: ""
                 });
+                self.removeGift(1);
               }
               e.target.value = null;
             }
@@ -105,6 +200,27 @@ class App extends Component {
             e.target.value = null;
         }
     });
+  }
+  removeGift(number){
+    var user = Meteor.userId();
+    Meteor.call('user.useGift', user, number);
+    var d = document.getElementsByClassName('gift')[number];
+    d.classList.add('no-click');
+    if(number === 0) {
+      this.setState({
+        firstGift: false,
+        savedGift1: 'This gift has been used!'
+      });
+    } else {
+      this.setState({
+        firstGift: false,
+        savedGift2: 'This gift has been used!'
+      });
+    }
+  }
+  saveGift(gift, number) {
+    var user = Meteor.userId();
+    Meteor.call('user.saveGift', user, gift, number);
   }
   toggleBag(){
     if(this.state.bagToggle === true) {
@@ -160,6 +276,7 @@ class App extends Component {
         chooseGiftClasses: "choose-gift",
         savedGift1: g,
       });
+      this.saveGift(g, 0);
     }
     if(e.target.className === 'gift2') {
       g = e.target.dataset.gift2;
@@ -167,6 +284,7 @@ class App extends Component {
         chooseGiftClasses: "choose-gift",
         savedGift2: g,
       });
+      this.saveGift(g, 1);
     }
     d.classList.remove('gift-expload');
   }
@@ -181,6 +299,14 @@ class App extends Component {
       giftUsing: g
     });
   }
+  setBoard(){
+    this.setState({
+      scanned: Meteor.user().spot,
+      loginClasses: "login login-hide",
+      pageClasses: "page page-show",
+      entranceClasses: "entrance entrance-hide"
+    }); 
+  }
   render() {
     return (
       <div className="App">
@@ -194,6 +320,9 @@ class App extends Component {
         <Entrance 
           login={this.login.bind(this)}
           entranceClasses={this.state.entranceClasses} />
+
+        <Loader 
+          scanned={this.state.scanned} />
 
         <Page
           pageClasses={this.state.pageClasses}

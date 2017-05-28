@@ -1,0 +1,48 @@
+.loader {
+	@include center;
+	height: 100vh;
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 999999999;
+	@include background-right;
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+	color: #fff;
+	transform-origin: 50% 100%;
+	transition-duration: 0.45s;
+	&>div {
+		@include center;
+		flex-direction: column;
+		&>h1 {
+			font-size: 9vh;
+			font-weight: 900;
+			background: -webkit-linear-gradient(#eee, #A9ABAE);
+		    -webkit-background-clip: text;
+		    -webkit-text-fill-color: transparent;
+		    margin: 0;
+		    transition-duration: 0.3s;
+		}
+		&>.spinner {
+			background: url('loader.gif') no-repeat center;
+			background-size: contain;
+			height: 100px;
+			width: 100px;
+			transition-duration: 0.3s;
+		}
+	}
+}
+
+.loader-hide{
+	transform: scaleY(0);
+	transition-delay: 0.45s;
+	&>div>h1 {
+		transform: translateY(100px);
+		opacity: 0;
+		transition-delay: 0.25s;
+	}
+	&>div>.spinner {
+		transform: scale(0);
+		transition-delay: 0s;
+	}
+}

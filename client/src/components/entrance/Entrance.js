@@ -3,8 +3,6 @@ import Flickity from 'flickity';
 
 class Entrance extends Component {
   componentDidMount(){
-      var p = this.refs.entrance;
-
       const carousel = document.getElementById('c');
       const options = {
             contain: true,
@@ -14,12 +12,6 @@ class Entrance extends Component {
 
       this.flkty = new Flickity(carousel, options);
       this.flkty.on('cellSelect', this.updateSelected);
-
-      // set height
-      p.style.height = window.innerHeight + 'px';
-      window.addEventListener("resize", function(){
-        p.style.height = window.innerHeight + 'px';
-      });
   }
   componentWillUnmount() {
       if (this.flkty) {
@@ -30,12 +22,12 @@ class Entrance extends Component {
     var teste = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         e = this.refs.e,
         p = this.refs.p;
-    if(teste.test(e.value) && p !== '') {
+    if(teste.test(e.value) && p.value !== '') {
       this.props.login(e.value, p.value);
-    } else {
+    } 
+    if(!teste.test(e.value)) {
       e.value = '';
       e.placeholder = 'enter a valid email';
-      p.value = '';
     }
   }
   next(){

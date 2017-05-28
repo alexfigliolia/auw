@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
 
 class Gift extends Component {
-  componentDidMount(){
-  	var h,
-  		  p = this.refs.gift;
-  	if(window.innerWidth > 799) { h = 81; } else { h = 61; }
-  	p.style.height = (window.innerHeight - h) + 'px';
-  	window.addEventListener("resize", function(){
-      if(window.innerWidth > 799) { h = 81; } else { h = 61; }
-  		p.style.height = (window.innerHeight - h) + 'px';
-  	});
-  }
   render() {
     return (
     	<div ref='gift' className={this.props.chooseGiftClasses} id="chooseGift">

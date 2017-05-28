@@ -1,5 +1,6 @@
 .page {
 	width: 100%;
+	height: calc(100vh - 60px);
 	@include center;
 	flex-wrap: wrap;
 	background: #fff;
@@ -14,6 +15,7 @@
 	font-weight: 300;
 	@media #{$mq-800} {
 		margin-top: 80px;
+		height: calc(100vh - 80px);
 	}
 	&>.square{
 		box-sizing: border-box;
@@ -172,6 +174,7 @@
 				top: 0;
 				left: 0;
 				height: 100%;
+				border-radius: 50%;
 				width: 100%;
 				background: url('gift.svg') no-repeat 50% 47.5%;
 				background-size: 50% 50%;
@@ -191,6 +194,13 @@
 					bottom: -30%;
 				}
 			}
+		}
+		&>.circle.gift.no-click::before{
+			display: none;
+		}
+		&>.circle.gift.no-click::after{
+			background: #fff url('check.svg') no-repeat center;
+			background-size: 50%;
 		}
 		&::before{
 			transition-duration: 0.3s;
@@ -253,6 +263,7 @@
 				left: 0;
 				height: 100%;
 				width: 100%;
+				border-radius: 50%;
 				background: url('gift.svg') no-repeat 50% 47.5%;
 				background-size: 50% 50%;
 			}
@@ -271,6 +282,13 @@
 					bottom: -30%;
 				}
 			}
+		}
+		&>.circle.gift.no-click::before{
+			display: none;
+		}
+		&>.circle.gift.no-click::after{
+			background: #fff url('check.svg') no-repeat center;
+			background-size: 50%;
 		}
 		&::before{
 			transition-duration: 0.3s;
