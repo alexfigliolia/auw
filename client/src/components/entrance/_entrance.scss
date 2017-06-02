@@ -6,7 +6,9 @@
 	top: 0;
 	left: 0;
 	z-index: 99999999;
+	@include background-right;
 	// background: #000;
+	transform: translateX(0%);
 	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 	& .arrow-next {
 		position: fixed;
@@ -25,6 +27,7 @@
 	& .carousel {
 		height: 100%;
 		width: 100%;
+		z-index: 2;
 		// @include center;
 		& .slide {
 			height: 100%;

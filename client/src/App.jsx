@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor'
 import Quagga from 'quagga';
 import Entrance from './components/entrance/Entrance.jsx';
-import Loader from './components/loader/Loader.jsx';
+// import Loader from './components/loader/Loader.jsx';
 import Header from './components/header/Header.jsx';
 import Page from './components/page/Page.jsx';
 import Bag from './components/bag/Bag.jsx';
@@ -15,8 +15,8 @@ class App extends Component {
       squareClasses : ["square", "square", "square", "square", "square", "square"],
       scanned : null,
       loginClasses: "login",
-      pageClasses: "page page-show",
-      entranceClasses: "entrance",
+      pageClasses: "page",
+      entranceClasses: null,
       bagToggle: true,
       bagClasses: "bag-overlay",
       bagIconClasses: "bag",
@@ -46,9 +46,12 @@ class App extends Component {
     });
     return { isAuthenticated: Meteor.userId() !== null };
   }
-  componentWillMount(){
+  componentDidMount(){
     if (!this.state.users.isAuthenticated) {
       console.log('not authenticated on load');
+      this.setState({
+        entranceClasses: "entrance"
+      });
     } else {
       this.setState({
         loginClasses: "login login-hide",
@@ -249,7 +252,7 @@ class App extends Component {
         this.setState({
           chooseGiftClasses: "choose-gift choose-gift-show"
         });
-      }.bind(this), 600);
+      }.bind(this), 800);
     }
     if(e.target.className === 'circle gift gift-timing' && e.target.parentNode.className === 'square square-on') {
       e.target.classList.add('gift-timing');
@@ -263,7 +266,7 @@ class App extends Component {
         this.setState({
           chooseGiftClasses: "choose-gift choose-gift-show"
         });
-      }.bind(this), 600);
+      }.bind(this), 800);
     }
   }
   scaleDown(e){
@@ -309,19 +312,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
+      <Entrance 
+          login={this.login.bind(this)}
+          entranceClasses={this.state.entranceClasses}
+          scanned={this.state.scanned} />
+
         <Header 
           handleCode={this.handleCode.bind(this)}
           toggleBag={this.toggleBag.bind(this)}
           iconClasses={this.state.bagIconClasses}
           gift1={this.state.savedGift1}
           gift2={this.state.savedGift2} />
-
-        <Entrance 
-          login={this.login.bind(this)}
-          entranceClasses={this.state.entranceClasses} />
-
-        <Loader 
-          scanned={this.state.scanned} />
 
         <Page
           pageClasses={this.state.pageClasses}
