@@ -37,7 +37,7 @@ class Entrance extends Component {
     return (
     	<div ref='entrance' className={this.props.entranceClasses} id="entrance">
         <button onClick={this.next.bind(this)} className='arrow-next'></button>
-        <div ref='carousel' className='carousel' id='c'>
+        <div ref='carousel' className='carousel' id='c' data-flickity='{"contain" : true, "prevNextButtons": false, "pageDots" : true}'>
             <div className="slide">
               <div>
                 <img src='emoticon17.svg' alt='smile' />

@@ -15,7 +15,7 @@ class App extends Component {
       scanned : null,
       loginClasses: "login",
       pageClasses: "page",
-      entranceClasses: null,
+      entranceClasses: "entrance",
       bagToggle: true,
       bagClasses: "bag-overlay",
       bagIconClasses: "bag",
