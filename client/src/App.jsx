@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor'
 import Quagga from 'quagga';
 import Entrance from './components/entrance/Entrance.jsx';
-// import Loader from './components/loader/Loader.jsx';
 import Header from './components/header/Header.jsx';
 import Page from './components/page/Page.jsx';
 import Bag from './components/bag/Bag.jsx';

@@ -3,13 +3,13 @@
 	width: 100%;
 	@include center;
 	background: #fff;
-	position: absolute;
-	top: 60px;
-	left: 0px;
-	z-index: 100;
-	@media #{$mq-800} {
-		top: 80px;
-	}
+	// position: absolute;
+	// top: 60px;
+	// left: 0px;
+	// z-index: 100;
+	// @media #{$mq-800} {
+	// 	top: 80px;
+	// }
 	&>div {
 		@include center;
 		flex-direction: column;
@@ -67,6 +67,6 @@
 	transform: translateX(-100%);
 	transition-duration: 0.5s;
 }
-.slide.login {
-	top: 0;
-}
+// .slide.login {
+// 	top: 0;
+// }
