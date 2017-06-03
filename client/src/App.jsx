@@ -6,6 +6,7 @@ import Header from './components/header/Header.jsx';
 import Page from './components/page/Page.jsx';
 import Bag from './components/bag/Bag.jsx';
 import Gift from './components/gift/Gift.jsx';
+import '../App.css';
 
 class App extends Component {
   constructor(props) {
