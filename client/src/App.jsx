@@ -24,6 +24,8 @@ class App extends Component {
       savedGift2: null,
       giftUsing: "",
       firstGift: true,
+      wrongPassword: null,
+      enterClasses: 'enter-button',
       users: this.getMeteorData()
     }
   }
@@ -122,25 +124,40 @@ class App extends Component {
     }
   }
   login(e, p){
+    this.setState({
+      wrongPassword: null,
+      enterClasses: 'enter-button enter-loading'
+    });
     Meteor.loginWithPassword(e, p, (err) => {
       if(err){
-        console.log(err.reason);
+        // console.log(err.reason);
+        if(err.reason === 'Incorrect password') {
+          this.setState({
+            wrongPassword: true,
+            enterClasses: 'enter-button'
+          });
+          document.getElementById('password').value = '';
+        }
         if(err.reason === 'User not found') {
           Accounts.createUser({email: e, spot: 0, password: p}, (err) => {
             if(err){
-              console.log(err.reason);
+              // console.log(err.reason);
             } else {
-              console.log('creating new user');
+              // console.log('creating new user');
               Meteor.loginWithPassword(e, p, (err) => {
                 if(err) {
                   console.log(err.reason);
                 } else {
-                  console.log(this.state.users);
-                  console.log('logging in new user');
+                  // console.log(this.state.users);
+                  // console.log('logging in new user');
                   this.setBoard();
                   setTimeout(function(){
                     this.getSpot();
-                  }.bind(this), 800);
+                    this.setState({
+                      wrongPassword: null,
+                      enterClasses: 'enter-button'
+                    });
+                  }.bind(this), 600);
                 }
               });
             }
@@ -148,13 +165,17 @@ class App extends Component {
         }
       } else {
         if (!this.state.users.isAuthenticated) {
-          console.log(this.state.users);
+          // console.log(this.state.users);
         } else {
-          console.log(this.state.users);
+          // console.log(this.state.users);
         }
         this.setBoard();
         setTimeout(function(){
           this.getSpot();
+          this.setState({
+            wrongPassword: null,
+            enterClasses: 'enter-button'
+          });
         }.bind(this), 600);
       }
     });
@@ -315,7 +336,9 @@ class App extends Component {
       <Entrance 
           login={this.login.bind(this)}
           entranceClasses={this.state.entranceClasses}
-          scanned={this.state.scanned} />
+          scanned={this.state.scanned}
+          password={this.state.wrongPassword}
+          buttonClasses={this.state.enterClasses} />
 
         <Header 
           handleCode={this.handleCode.bind(this)}

@@ -62,10 +62,14 @@ class Entrance extends Component {
             <div ref='slideLogin' className="slide login" id="slideLogin">
               <div>
                 <h1>Login.</h1>
+                {
+                  this.props.password &&
+                    <h3>Incorrect Password</h3>
+                }
                 <div className="userinfo" id='userInfo'>
                   <input ref='e' type='text' placeholder="Email"/>
-                  <input ref='p' type='password' placeholder="Password"/>
-                  <button onClick={this.login.bind(this)}>Go!</button>
+                  <input ref='p' type='password' placeholder='Password' id='password' onBlur={this.login.bind(this) }/>
+                  <button className={this.props.buttonClasses} onClick={this.login.bind(this)}>Go!</button>
                 </div>
               </div>
             </div>
