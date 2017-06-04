@@ -69,7 +69,7 @@ class Entrance extends Component {
                 <div className="userinfo" id='userInfo'>
                   <input ref='e' type='text' placeholder="Email"/>
                   <input ref='p' type='password' placeholder='Password' id='password' onBlur={this.login.bind(this) }/>
-                  <button className={this.props.buttonClasses} onClick={this.login.bind(this)}>Go!</button>
+                  <button className={this.props.buttonClasses} onClick={this.login.bind(this)}>{this.props.buttonText}</button>
                 </div>
               </div>
             </div>

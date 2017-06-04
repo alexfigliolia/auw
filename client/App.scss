@@ -10,7 +10,7 @@ body {
   overflow: hidden;
   width: 100%;
 }
-
+@import 'src/components/loader/loader';
 @import 'src/components/entrance/entrance';
 @import 'src/components/login/login';
 // @import 'src/components/loader/loader';

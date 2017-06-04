@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor'
 import Quagga from 'quagga';
+import Loader from './components/loader/Loader.jsx';
 import Entrance from './components/entrance/Entrance.jsx';
 import Header from './components/header/Header.jsx';
 import Page from './components/page/Page.jsx';
 import Bag from './components/bag/Bag.jsx';
 import Gift from './components/gift/Gift.jsx';
-import '../App.css';
 
 class App extends Component {
   constructor(props) {
@@ -14,19 +14,20 @@ class App extends Component {
     this.state = {
       squareClasses : ["square", "square", "square", "square", "square", "square"],
       scanned : null,
-      loginClasses: "login",
       pageClasses: "page",
       entranceClasses: "entrance",
       bagToggle: true,
       bagClasses: "bag-overlay",
       bagIconClasses: "bag",
       chooseGiftClasses: "choose-gift",
+      loaderClasses: "loading",
       savedGift1: null,
       savedGift2: null,
       giftUsing: "",
       firstGift: true,
       wrongPassword: null,
       enterClasses: 'enter-button',
+      enterText: 'Go!',
       users: this.getMeteorData()
     }
   }
@@ -36,39 +37,30 @@ class App extends Component {
       if(Meteor.user() !== null && Meteor.user() !== undefined) {
         var s = Meteor.user();
         self.setState({
+          entranceClasses: "entrance entrance-hide entrance-none",
           scanned: s.spot,
           savedGift1: s.savedGift1,
           savedGift2: s.savedGift2
         });
         setTimeout(function(){
-          self.handleSub();
+          self.setState({
+            loaderClasses: 'loading loading-hide',
+            pageClasses: "page page-show"
+          });
         }.bind(self), 1000);
-        console.log(s);
+        setTimeout(function(){
+          self.getSpot();
+        }.bind(self), 2000);
       } 
     });
     return { isAuthenticated: Meteor.userId() !== null };
   }
   componentDidMount(){
     if (!this.state.users.isAuthenticated) {
-      console.log('not authenticated on load');
       this.setState({
-        entranceClasses: "entrance"
+        loaderClasses: "loading loading-hide"
       });
-    } else {
-      this.setState({
-        loginClasses: "login login-hide",
-        pageClasses: "page page-show",
-        entranceClasses: "entrance entrance-hide"
-      });
-    }
-  }
-  handleSub(){
-    if (!this.state.users.isAuthenticated) {
-      console.log('not authenticated on load');
-    } else {
-      console.log('authenticated on load');
-      this.getSpot();
-    }
+    } 
   }
 
   getSpot(){
@@ -76,12 +68,13 @@ class App extends Component {
     var classes = this.state.squareClasses;
     classes[squareOn] = 'square square-on';
     for(var i = 0; i < squareOn; i++) {
-      classes[i] = 'square square-complete'
+      classes[i] = 'square square-complete';
     }
     this.setState({
       squareClasses : classes
     });
   }
+
   scan(){
     var s = this.state.scanned + 1;
     if(s === 3 && this.state.savedGift1 === null) {
@@ -127,7 +120,8 @@ class App extends Component {
   login(e, p){
     this.setState({
       wrongPassword: null,
-      enterClasses: 'enter-button enter-loading'
+      enterClasses: 'enter-button enter-loading',
+      enterText: ''
     });
     Meteor.loginWithPassword(e, p, (err) => {
       if(err){
@@ -135,7 +129,8 @@ class App extends Component {
         if(err.reason === 'Incorrect password') {
           this.setState({
             wrongPassword: true,
-            enterClasses: 'enter-button'
+            enterClasses: 'enter-button',
+            enterText: 'Go!'
           });
           document.getElementById('password').value = '';
         }
@@ -156,7 +151,8 @@ class App extends Component {
                     this.getSpot();
                     this.setState({
                       wrongPassword: null,
-                      enterClasses: 'enter-button'
+                      enterClasses: 'enter-button',
+                      enterText: 'Go!'
                     });
                   }.bind(this), 600);
                 }
@@ -165,17 +161,13 @@ class App extends Component {
           });
         }
       } else {
-        if (!this.state.users.isAuthenticated) {
-          // console.log(this.state.users);
-        } else {
-          // console.log(this.state.users);
-        }
         this.setBoard();
         setTimeout(function(){
           this.getSpot();
           this.setState({
             wrongPassword: null,
-            enterClasses: 'enter-button'
+            enterClasses: 'enter-button',
+            enterText: 'Go!'
           });
         }.bind(this), 600);
       }
@@ -325,7 +317,6 @@ class App extends Component {
   setBoard(){
     this.setState({
       scanned: Meteor.user().spot,
-      loginClasses: "login login-hide",
       pageClasses: "page page-show",
       entranceClasses: "entrance entrance-hide"
     }); 
@@ -334,12 +325,16 @@ class App extends Component {
     return (
       <div className="App">
 
+      <Loader
+        classes={this.state.loaderClasses} />
+
       <Entrance 
           login={this.login.bind(this)}
           entranceClasses={this.state.entranceClasses}
           scanned={this.state.scanned}
           password={this.state.wrongPassword}
-          buttonClasses={this.state.enterClasses} />
+          buttonClasses={this.state.enterClasses}
+          buttonText={this.state.enterText} />
 
         <Header 
           handleCode={this.handleCode.bind(this)}

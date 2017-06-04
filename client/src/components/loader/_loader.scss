@@ -1,19 +1,20 @@
-.loader {
+.loading {
 	@include center;
 	height: 100vh;
 	width: 100%;
 	position: fixed;
-	bottom: 0;
+	top: 0;
 	left: 0;
-	z-index: 99999;
+	z-index: 99999999999;
 	@include background-right;
 	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 	color: #fff;
-	transform-origin: 50% 100%;
+	transform-origin: 0% 50%;
 	transition-duration: 0.45s;
 	&>div {
 		@include center;
 		flex-direction: column;
+		transition-duration: 0.3s;
 		&>h1 {
 			font-size: 9vh;
 			font-weight: 900;
@@ -33,16 +34,12 @@
 	}
 }
 
-.loader-hide{
-	transform: scaleY(0);
+.loading-hide{
+	transform: scaleX(0);
 	transition-delay: 0.45s;
-	&>div>h1 {
-		transform: translateY(100px);
-		opacity: 0;
-		transition-delay: 0.25s;
-	}
-	&>div>.spinner {
-		transform: scale(0);
+	&>div {
+		transform: scale(3);
 		transition-delay: 0s;
+		opacity: 0;
 	}
 }
