@@ -57,9 +57,11 @@ class App extends Component {
   }
   componentDidMount(){
     if (!this.state.users.isAuthenticated) {
-      this.setState({
-        loaderClasses: "loading loading-hide"
-      });
+      setTimeout(function(){
+        this.setState({
+          loaderClasses: "loading loading-hide"
+        });
+      }.bind(this), 500);
     } 
   }
 
