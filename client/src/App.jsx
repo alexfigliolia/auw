@@ -15,7 +15,7 @@ class App extends Component {
       squareClasses : ["square", "square", "square", "square", "square", "square"],
       scanned : null,
       pageClasses: "page",
-      entranceClasses: "entrance",
+      entranceClasses: "entrance entrance-display",
       bagToggle: true,
       bagClasses: "bag-overlay",
       bagIconClasses: "bag",

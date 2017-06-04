@@ -9,8 +9,9 @@
 	@include background-right;
 	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 	color: #fff;
+	transform: scaleX(1);
 	transform-origin: 0% 50%;
-	transition-duration: 0.45s;
+	transition-duration: 0s;
 	&>div {
 		@include center;
 		flex-direction: column;
@@ -37,6 +38,7 @@
 .loading-hide{
 	transform: scaleX(0);
 	transition-delay: 0.45s;
+	transition-duration: 0.45s;
 	&>div {
 		transform: scale(3);
 		transition-delay: 0s;
