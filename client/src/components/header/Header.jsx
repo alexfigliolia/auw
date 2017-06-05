@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Header extends Component {
   render() {
     return (
-        <header className="header" id="header">
+        <header className={this.props.classes} id="header">
             <div>
                 <button className={this.props.iconClasses} onClick={this.props.toggleBag}>
                   {

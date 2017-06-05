@@ -1,0 +1,48 @@
+.error {
+	height: 80vh;
+	width: 100%;
+	background: #fff;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	@include center;
+	transform: scaleY(0);
+	transform-origin: 50% 0%;
+	transition-duration: 0.3s;
+	&>div{
+		@include center;
+		flex-direction: column;
+		width: 90%;
+		&>h1 {
+			font-size: 5vh;
+			margin: 0;
+			transform: translateY(-100px);
+			opacity: 0;
+			transition-duration: 0.3s;
+			transition-delay: 0s;
+		}
+		&>p {
+			font-size: 3.6vh;
+			margin: 0;
+			transform: translateY(-100px);
+			opacity: 0;
+			transition-duration: 0.3s;
+			transition-delay: 0s;
+		}
+	}
+}
+
+.error-show {
+	transform: scaleY(1);
+	&>div>h1{
+		transition-delay: 0.35s;
+		opacity: 1;
+		transform: translateY(0px);
+	}
+	&>div>p{
+		transition-delay: 0.25s;
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}

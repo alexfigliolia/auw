@@ -7,6 +7,7 @@ import Header from './components/header/Header.jsx';
 import Page from './components/page/Page.jsx';
 import Bag from './components/bag/Bag.jsx';
 import Gift from './components/gift/Gift.jsx';
+import ErrorOverlay from './components/error/Error.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -17,11 +18,13 @@ class App extends Component {
       pageClasses: "page",
       entranceClasses: "entrance entrance-display",
       loginClasses: "slide login",
+      headerClasses: "header",
       bagToggle: true,
       bagClasses: "bag-overlay",
       bagIconClasses: "bag",
       chooseGiftClasses: "choose-gift",
       loaderClasses: "loading",
+      errorClasses: "error",
       savedGift1: null,
       savedGift2: null,
       giftUsing: "",
@@ -62,13 +65,19 @@ class App extends Component {
     return { isAuthenticated: Meteor.userId() !== null };
   }
   componentDidMount(){
-    if (!this.state.users.isAuthenticated) {
-      // setTimeout(function(){
-      //   this.setState({
-      //     loaderClasses: "loading loading-hide"
-      //   });
-      // }.bind(this), 500);
-    } 
+    // if (!this.state.users.isAuthenticated) {
+    //   // setTimeout(function(){
+    //   //   this.setState({
+    //   //     loaderClasses: "loading loading-hide"
+    //   //   });
+    //   // }.bind(this), 500);
+    // } 
+    var self = this;
+    Quagga.onProcessed(function(data){
+      if(data === undefined){
+        self.handleIncorrect();
+      }
+    });
   }
 
   getSpot(){
@@ -80,6 +89,14 @@ class App extends Component {
     }
     this.setState({
       squareClasses : classes
+    });
+  }
+
+  handleIncorrect(){
+    console.log('please try again');
+    this.setState({
+      headerClasses: "header header-move",
+      errorClasses: "error error-show"
     });
   }
 
@@ -127,6 +144,7 @@ class App extends Component {
   }
 
   login(e, p){
+    e = e.toLowerCase();
     this.setState({
       wrongPassword: null,
       loginClasses: 'slide login login-loading',
@@ -195,13 +213,13 @@ class App extends Component {
   }
 
   handleCode(e){
-    e.persist()
+    e.persist();
     var self = this;
     Quagga.decodeSingle({
         decoder: {
             readers: ["code_128_reader"] // List of active readers
         },
-        numOfWorkers: 3,  // Needs to be 0 when used within node
+        numOfWorkers: navigator.hardwareConcurrency,
         locate: true, // try to locate the barcode in the image
         src: URL.createObjectURL(e.target.files[0]), // or 'data:image/jpg;base64,' + data
         locator: {
@@ -232,8 +250,13 @@ class App extends Component {
               }
               e.target.value = null;
             }
+            if(result.codeResult.code !== '00786590' && result.codeResult.code !== '00786589') {
+              console.log('farted');
+              self.handleIncorrect();
+            }
         } else {
             e.target.value = null;
+            self.handleIncorrect();
         }
     });
   }
@@ -339,23 +362,24 @@ class App extends Component {
     return (
       <div className="App">
 
-      <Loader
-        classes={this.state.loaderClasses} />
+        <Loader
+          classes={this.state.loaderClasses} />
 
-      <Entrance 
-          login={this.login.bind(this)}
-          entranceClasses={this.state.entranceClasses}
-          scanned={this.state.scanned}
-          password={this.state.wrongPassword}
-          buttonText={this.state.enterText}
-          loginClasses={this.state.loginClasses} />
+        <Entrance 
+            login={this.login.bind(this)}
+            entranceClasses={this.state.entranceClasses}
+            scanned={this.state.scanned}
+            password={this.state.wrongPassword}
+            buttonText={this.state.enterText}
+            loginClasses={this.state.loginClasses} />
 
         <Header 
           handleCode={this.handleCode.bind(this)}
           toggleBag={this.toggleBag.bind(this)}
           iconClasses={this.state.bagIconClasses}
           gift1={this.state.savedGift1}
-          gift2={this.state.savedGift2} />
+          gift2={this.state.savedGift2}
+          classes={this.state.headerClasses} />
 
         <Page
           pageClasses={this.state.pageClasses}
@@ -373,6 +397,9 @@ class App extends Component {
           chooseGiftClasses={this.state.chooseGiftClasses}
           scaleDown={this.scaleDown.bind(this)}
           whichGift={this.state.firstGift} />
+
+        <ErrorOverlay 
+          classes={this.state.errorClasses} />
 
       </div>
     );

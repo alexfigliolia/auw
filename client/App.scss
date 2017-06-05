@@ -13,11 +13,11 @@ body {
 @import 'src/components/loader/loader';
 @import 'src/components/entrance/entrance';
 @import 'src/components/login/login';
-// @import 'src/components/loader/loader';
 @import 'src/components/header/header';
 @import 'src/components/page/page';
 @import 'src/components/bag/bag';
 @import 'src/components/gift/gift';
+@import 'src/components/error/error';
 
 .App {
   text-align: center;
