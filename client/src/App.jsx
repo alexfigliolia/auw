@@ -16,6 +16,7 @@ class App extends Component {
       scanned : null,
       pageClasses: "page",
       entranceClasses: "entrance entrance-display",
+      loginClasses: "slide login",
       bagToggle: true,
       bagClasses: "bag-overlay",
       bagIconClasses: "bag",
@@ -26,7 +27,6 @@ class App extends Component {
       giftUsing: "",
       firstGift: true,
       wrongPassword: null,
-      enterClasses: 'enter-button',
       enterText: 'Go!',
       users: this.getMeteorData()
     }
@@ -47,10 +47,10 @@ class App extends Component {
             loaderClasses: 'loading loading-hide',
             pageClasses: "page page-show"
           });
-        }.bind(self), 1000);
+        }.bind(self), 250);
         setTimeout(function(){
           self.getSpot();
-        }.bind(self), 2000);
+        }.bind(self), 900);
       } 
     });
     return { isAuthenticated: Meteor.userId() !== null };
@@ -119,21 +119,24 @@ class App extends Component {
       Meteor.call('user.updateSpot', i, s);
     }
   }
+
   login(e, p){
     this.setState({
       wrongPassword: null,
-      enterClasses: 'enter-button enter-loading',
+      loginClasses: 'slide login login-loading',
       enterText: ''
     });
     Meteor.loginWithPassword(e, p, (err) => {
       if(err){
         // console.log(err.reason);
         if(err.reason === 'Incorrect password') {
-          this.setState({
-            wrongPassword: true,
-            enterClasses: 'enter-button',
-            enterText: 'Go!'
-          });
+          setTimeout(function(){
+            this.setState({
+              wrongPassword: true,
+              loginClasses: 'slide login',
+              enterText: 'Go!'
+            });
+          }.bind(this), 800);
           document.getElementById('password').value = '';
         }
         if(err.reason === 'User not found') {
@@ -148,14 +151,12 @@ class App extends Component {
                 } else {
                   // console.log(this.state.users);
                   // console.log('logging in new user');
-                  this.setBoard();
+                  this.setState({
+                    wrongPassword: null,
+                    loginClasses: 'slide login login-loading login-logged-in'
+                  });
                   setTimeout(function(){
-                    this.getSpot();
-                    this.setState({
-                      wrongPassword: null,
-                      enterClasses: 'enter-button',
-                      enterText: 'Go!'
-                    });
+                    this.setBoard();
                   }.bind(this), 600);
                 }
               });
@@ -163,18 +164,30 @@ class App extends Component {
           });
         }
       } else {
-        this.setBoard();
         setTimeout(function(){
-          this.getSpot();
           this.setState({
             wrongPassword: null,
-            enterClasses: 'enter-button',
-            enterText: 'Go!'
+            loginClasses: 'slide login login-loading login-logged-in'
           });
-        }.bind(this), 600);
+        }.bind(this), 400);
+        setTimeout(function(){
+          this.setBoard();
+        }.bind(this), 800);
       }
     });
   }
+
+  setBoard(){
+    this.setState({
+      scanned: Meteor.user().spot,
+      pageClasses: "page page-show",
+      entranceClasses: "entrance entrance-hide"
+    }); 
+    setTimeout(function(){
+      this.getSpot();
+    }.bind(this), 250);
+  }
+
   handleCode(e){
     e.persist()
     var self = this;
@@ -316,13 +329,6 @@ class App extends Component {
       giftUsing: g
     });
   }
-  setBoard(){
-    this.setState({
-      scanned: Meteor.user().spot,
-      pageClasses: "page page-show",
-      entranceClasses: "entrance entrance-hide"
-    }); 
-  }
   render() {
     return (
       <div className="App">
@@ -335,8 +341,8 @@ class App extends Component {
           entranceClasses={this.state.entranceClasses}
           scanned={this.state.scanned}
           password={this.state.wrongPassword}
-          buttonClasses={this.state.enterClasses}
-          buttonText={this.state.enterText} />
+          buttonText={this.state.enterText}
+          loginClasses={this.state.loginClasses} />
 
         <Header 
           handleCode={this.handleCode.bind(this)}

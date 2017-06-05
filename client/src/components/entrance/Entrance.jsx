@@ -59,7 +59,7 @@ class Entrance extends Component {
                 <p>When you arrive at a <img src='gift.svg' alt='gift'/> you will be allowed to choose a free gift! Choose from discounts, free merchandise and store credit!</p>
               </div>
             </div>
-            <div ref='slideLogin' className="slide login" id="slideLogin">
+            <div ref='slideLogin' className={this.props.loginClasses} id="slideLogin">
               <div>
                 <h1>Login.</h1>
                 {
@@ -69,7 +69,7 @@ class Entrance extends Component {
                 <div className="userinfo" id='userInfo'>
                   <input ref='e' type='text' placeholder="Email"/>
                   <input ref='p' type='password' placeholder='Password' id='password' onBlur={this.login.bind(this) }/>
-                  <button className={this.props.buttonClasses} onClick={this.login.bind(this)}>{this.props.buttonText}</button>
+                  <button className="enter-button" onClick={this.login.bind(this)}>{this.props.buttonText}</button>
                 </div>
               </div>
             </div>

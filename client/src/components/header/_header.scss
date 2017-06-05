@@ -35,12 +35,28 @@
 			background-size: 60%;
 			transition-duration: 0.3s;
 			z-index: 5;
+			// @include center;
 			@media #{$mq-800} {
 		    	background-size: 65%;
+		    }
+		    &>div {
+		    	font-size: 1.1em;
+		    	color: #005C97;
+		    	font-weight: 100;
+		    	@include center;
+		    	width: 100%;
+		    	position: relative;
+		    	margin: 0;
+		    	padding: 0;
+		    	top: 6px;
+		    	left: 0;
 		    }
 		}
 		&>.bag-rotate{
 			transform: rotate(180deg);
+			&>div {
+		    	transform: rotate(180deg);
+		    }
 		}
 		&>.logo{
 			cursor: pointer;
@@ -76,16 +92,4 @@
 			}
 		}
 	}
-}
-
-@keyframes wave {
-  0% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-10px);
-  }
-  100% {
-    transform: translateX(0px);
-  }
 }
