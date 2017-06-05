@@ -51,17 +51,23 @@ class App extends Component {
         setTimeout(function(){
           self.getSpot();
         }.bind(self), 900);
+      } else {
+        setTimeout(function(){
+          self.setState({
+            loaderClasses: "loading loading-hide"
+          });
+        }.bind(self), 500);
       }
     });
     return { isAuthenticated: Meteor.userId() !== null };
   }
   componentDidMount(){
     if (!this.state.users.isAuthenticated) {
-      setTimeout(function(){
-        this.setState({
-          loaderClasses: "loading loading-hide"
-        });
-      }.bind(this), 500);
+      // setTimeout(function(){
+      //   this.setState({
+      //     loaderClasses: "loading loading-hide"
+      //   });
+      // }.bind(this), 500);
     } 
   }
 
