@@ -34,7 +34,7 @@ class App extends Component {
   getMeteorData(){
     var self = this;
     Meteor.subscribe('userData', function(){
-      if(Meteor.user() !== null && Meteor.user() !== undefined) {
+      if(Meteor.user() !== null) {
         var s = Meteor.user();
         self.setState({
           entranceClasses: "entrance entrance-hide entrance-none",
@@ -51,7 +51,7 @@ class App extends Component {
         setTimeout(function(){
           self.getSpot();
         }.bind(self), 900);
-      } 
+      }
     });
     return { isAuthenticated: Meteor.userId() !== null };
   }
