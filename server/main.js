@@ -78,3 +78,6 @@ Meteor.methods({
   }
 });
 
+if(Meteor.isCordova) {
+  StatusBar.hide();
+}
