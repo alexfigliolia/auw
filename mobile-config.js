@@ -7,8 +7,8 @@ App.appendToConfig(`<platform name="ios">
     </config-file>
     <config-file parent="UIStatusBarHidden" platform="ios" target="*-Info.plist">
       <true/>
-	</config-file>
-	<config-file parent="UIViewControllerBasedStatusBarAppearance" platform="ios" target="*-Info.plist">
-	  <false/>
-	</config-file>
+	  </config-file>
+	  <config-file parent="UIViewControllerBasedStatusBarAppearance" platform="ios" target="*-Info.plist">
+	    <false/>
+	  </config-file>
   </platform>`);
