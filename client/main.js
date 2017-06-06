@@ -5,9 +5,9 @@ import App from './src/App.jsx';
 import '../startup/accounts-config.js';
  
 Meteor.startup(() => {
+  render(<App />, document.getElementById('root'));
   if(Meteor.isCordova) {
 	StatusBar.hide();
   }
-  render(<App />, document.getElementById('root'));
 });
 
