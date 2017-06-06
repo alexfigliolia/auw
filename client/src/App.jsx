@@ -65,13 +65,6 @@ class App extends Component {
     return { isAuthenticated: Meteor.userId() !== null };
   }
   componentDidMount(){
-    // if (!this.state.users.isAuthenticated) {
-    //   // setTimeout(function(){
-    //   //   this.setState({
-    //   //     loaderClasses: "loading loading-hide"
-    //   //   });
-    //   // }.bind(this), 500);
-    // } 
     var self = this;
     Quagga.onProcessed(function(data){
       if(data === undefined){
@@ -97,6 +90,13 @@ class App extends Component {
     this.setState({
       headerClasses: "header header-move",
       errorClasses: "error error-show"
+    });
+  }
+
+  tryAgain(){
+    this.setState({
+      headerClasses: "header",
+      errorClasses: "error"
     });
   }
 
@@ -230,7 +230,6 @@ class App extends Component {
         if(result.codeResult) {
             if(result.codeResult.code === '00786589'){
               self.scan();
-              e.target.value = null;
             }
             if(result.codeResult.code === '00786590'){
               var gu = self.state.giftUsing,
@@ -248,18 +247,17 @@ class App extends Component {
                 });
                 self.removeGift(1);
               }
-              e.target.value = null;
             }
             if(result.codeResult.code !== '00786590' && result.codeResult.code !== '00786589') {
-              console.log('farted');
               self.handleIncorrect();
             }
         } else {
-            e.target.value = null;
             self.handleIncorrect();
         }
+        e.target.value = null;
     });
   }
+  
   removeGift(number){
     var user = Meteor.userId();
     Meteor.call('user.useGift', user, number);
@@ -277,10 +275,12 @@ class App extends Component {
       });
     }
   }
+
   saveGift(gift, number) {
     var user = Meteor.userId();
     Meteor.call('user.saveGift', user, gift, number);
   }
+
   toggleBag(){
     if(this.state.bagToggle === true) {
       this.setState({
@@ -296,6 +296,7 @@ class App extends Component {
       });
     }
   }
+
   chooseGift(e){
     if(e.target.className === 'circle gift' && e.target.parentNode.className === 'square square-on') {
       e.target.classList.add('gift-timing');
@@ -326,6 +327,7 @@ class App extends Component {
       }.bind(this), 800);
     }
   }
+
   scaleDown(e){
     var d = document.getElementsByClassName('gift-expload')[0],
         g;
@@ -347,6 +349,7 @@ class App extends Component {
     }
     d.classList.remove('gift-expload');
   }
+
   useGift(e){
     var sg = document.getElementsByClassName('saved-gift'),
         g = e.target.dataset.gift;
@@ -399,7 +402,8 @@ class App extends Component {
           whichGift={this.state.firstGift} />
 
         <ErrorOverlay 
-          classes={this.state.errorClasses} />
+          classes={this.state.errorClasses}
+          tryAgain={this.tryAgain.bind(this)} />
 
       </div>
     );

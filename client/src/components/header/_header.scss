@@ -10,6 +10,7 @@
 	@include background-top;
 	background: #fff;
 	transition-duration: 0.3s;
+	transition-delay: 0.1s;
 	@media #{$mq-800} {
 		height: 80px;
 	}
@@ -96,5 +97,6 @@
 }
 
 .header-move {
-	transform: translateY(79.8vh);
+	transition-delay: 0s;
+	transform: translateY(59.8vh);
 }
