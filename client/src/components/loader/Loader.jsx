@@ -6,7 +6,6 @@ class Loader extends Component {
     	<div className={this.props.classes}>
     		<div>
           <div className="spinner"></div>
-          <h1>Loading.</h1>
     		</div>
     	</div>
     );
