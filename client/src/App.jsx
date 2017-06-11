@@ -209,7 +209,7 @@ class App extends Component {
     }); 
     setTimeout(function(){
       this.getSpot();
-    }.bind(this), 250);
+    }.bind(this), 450);
   }
 
   handleCode(e){
@@ -228,7 +228,7 @@ class App extends Component {
         }
     }, function(result){
         if(result.codeResult) {
-            if(result.codeResult.code === '00786589'){
+            if(result.codeResult.code === '3452-adv-8398'){
               self.scan();
             }
             if(result.codeResult.code === '00786590'){
@@ -248,7 +248,7 @@ class App extends Component {
                 self.removeGift(1);
               }
             }
-            if(result.codeResult.code !== '00786590' && result.codeResult.code !== '00786589') {
+            if(result.codeResult.code !== '00786590' && result.codeResult.code !== '3452-adv-8398') {
               self.handleIncorrect();
             }
         } else {
