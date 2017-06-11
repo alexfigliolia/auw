@@ -5,7 +5,9 @@ class Loader extends Component {
     return (
     	<div className={this.props.classes}>
     		<div>
-          <div className="spinner"></div>
+          		<div className="spinner">
+          			<img src="auw-small.jpg" alt="logo" />
+          		</div>
     		</div>
     	</div>
     );
