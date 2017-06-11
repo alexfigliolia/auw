@@ -57,7 +57,8 @@ class App extends Component {
       } else {
         setTimeout(function(){
           self.setState({
-            loaderClasses: "loading loading-hide"
+            loaderClasses: "loading loading-hide",
+            entranceClasses: "entrance entrance-display entrance-text"
           });
         }.bind(self), 500);
       }

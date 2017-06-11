@@ -40,8 +40,8 @@ class Entrance extends Component {
         <div ref='carousel' className='carousel' id='c' data-flickity='{"contain" : true, "prevNextButtons": false, "pageDots" : true}'>
             <div className="slide">
               <div>
-                <img src='emoticon17.svg' alt='smile' />
-                <h1>Welcome.</h1>
+                <img src="orientation1.svg" alt="logo" />
+                <h1>Let's Begin.</h1>
                 <p>This app is your digital punch card for All Uniform Wear. You'll receive discounts and free gifts for purchases you make everyday.</p>
               </div>
             </div>
