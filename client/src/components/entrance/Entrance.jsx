@@ -11,7 +11,6 @@ class Entrance extends Component {
       }
 
       this.flkty = new Flickity(carousel, options);
-      this.flkty.on('cellSelect', this.updateSelected);
   }
   componentWillUnmount() {
       if (this.flkty) {
@@ -19,7 +18,7 @@ class Entrance extends Component {
       }
   }
   login(){
-    var teste = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+    const teste = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         e = this.refs.e,
         p = this.refs.p;
     if(teste.test(e.value) && p.value !== '') {
@@ -27,7 +26,7 @@ class Entrance extends Component {
     } 
     if(!teste.test(e.value)) {
       e.value = '';
-      e.placeholder = 'enter a valid email';
+      e.placeholder = 'Enter a valid email';
     }
   }
   next(){
@@ -41,7 +40,7 @@ class Entrance extends Component {
             <div className="slide">
               <div>
                 <img src="orientation1.svg" alt="logo" />
-                <h1>Let's Begin.</h1>
+                <h1>Welcome.</h1>
                 <p>This app is your digital punch card for All Uniform Wear. You'll receive discounts and free gifts for purchases you make everyday.</p>
               </div>
             </div>

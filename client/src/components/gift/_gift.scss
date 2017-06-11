@@ -7,6 +7,7 @@
 	background: transparent;
 	@include center;
 	background: #353535;
+	z-index: 39;
 	transform: scale(0);
 	transition-duration: 0s;
 	transition-delay: 0.2s;

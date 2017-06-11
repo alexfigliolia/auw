@@ -35,10 +35,10 @@ class App extends Component {
     }
   }
   getMeteorData(){
-    var self = this;
+    const self = this;
     Meteor.subscribe('userData', function(){
       if(Meteor.user() !== null) {
-        var s = Meteor.user();
+        const s = Meteor.user();
         self.setState({
           entranceClasses: "entrance entrance-hide entrance-none",
           scanned: s.spot,
@@ -66,7 +66,7 @@ class App extends Component {
     return { isAuthenticated: Meteor.userId() !== null };
   }
   componentDidMount(){
-    var self = this;
+    const self = this;
     Quagga.onProcessed(function(data){
       if(data === undefined){
         self.handleIncorrect();
@@ -75,8 +75,8 @@ class App extends Component {
   }
 
   getSpot(){
-    var squareOn = this.state.scanned;
-    var classes = this.state.squareClasses;
+    let squareOn = this.state.scanned,
+        classes = this.state.squareClasses;
     classes[squareOn] = 'square square-on';
     for(var i = 0; i < squareOn; i++) {
       classes[i] = 'square square-complete';
@@ -102,9 +102,9 @@ class App extends Component {
   }
 
   scan(){
-    var s = this.state.scanned + 1;
+    let s = this.state.scanned + 1;
     if(s === 3 && this.state.savedGift1 === null) {
-      var g = document.getElementsByClassName('gift')[0];
+      let g = document.getElementsByClassName('gift')[0];
       g.classList.add('gift-timing');
       g.classList.add('gift-expload');
       if(g.parentNode.id !== 'circleGift1'){
@@ -118,7 +118,7 @@ class App extends Component {
         });
       }.bind(this), 600);
     } else if(s === 6 && this.state.savedGift2 === null){
-      var g = document.getElementsByClassName('gift')[1];
+      let g = document.getElementsByClassName('gift')[1];
       g.classList.add('gift-timing');
       g.classList.add('gift-expload');
       if(g.parentNode.id !== 'circleGift1'){
@@ -139,7 +139,7 @@ class App extends Component {
       setTimeout(function(){
         this.getSpot();
       }.bind(this), 200);
-      var i = Meteor.userId();
+      let i = Meteor.userId();
       Meteor.call('user.updateSpot', i, s);
     }
   }
@@ -172,7 +172,7 @@ class App extends Component {
               // console.log('creating new user');
               Meteor.loginWithPassword(e, p, (err) => {
                 if(err) {
-                  console.log(err.reason);
+                  // console.log(err.reason);
                 } else {
                   // console.log(this.state.users);
                   // console.log('logging in new user');
@@ -215,7 +215,7 @@ class App extends Component {
 
   handleCode(e){
     e.persist();
-    var self = this;
+    const self = this;
     Quagga.decodeSingle({
         decoder: {
             readers: ["code_128_reader"] // List of active readers
@@ -233,7 +233,7 @@ class App extends Component {
               self.scan();
             }
             if(result.codeResult.code === '00786590'){
-              var gu = self.state.giftUsing,
+              let gu = self.state.giftUsing,
                   g1 = self.state.savedGift1,
                   g2 = self.state.savedGift2;
               if(gu === g1) {
@@ -260,9 +260,9 @@ class App extends Component {
   }
   
   removeGift(number){
-    var user = Meteor.userId();
+    let user = Meteor.userId();
     Meteor.call('user.useGift', user, number);
-    var d = document.getElementsByClassName('gift')[number];
+    let d = document.getElementsByClassName('gift')[number];
     d.classList.add('no-click');
     if(number === 0) {
       this.setState({
@@ -278,7 +278,7 @@ class App extends Component {
   }
 
   saveGift(gift, number) {
-    var user = Meteor.userId();
+    let user = Meteor.userId();
     Meteor.call('user.saveGift', user, gift, number);
   }
 
@@ -330,7 +330,7 @@ class App extends Component {
   }
 
   scaleDown(e){
-    var d = document.getElementsByClassName('gift-expload')[0],
+    let d = document.getElementsByClassName('gift-expload')[0],
         g;
     if(e.target.className === 'gift1') {
       g = e.target.dataset.gift;
@@ -352,7 +352,7 @@ class App extends Component {
   }
 
   useGift(e){
-    var sg = document.getElementsByClassName('saved-gift'),
+    let sg = document.getElementsByClassName('saved-gift'),
         g = e.target.dataset.gift;
     for(var i = 0; i < sg.length; i++) {
       sg[i].classList.remove('use-the-gift');
