@@ -53,7 +53,7 @@ class App extends Component {
         }.bind(self), 250);
         setTimeout(function(){
           self.getSpot();
-        }.bind(self), 1000);
+        }.bind(self), 1600);
       } else {
         setTimeout(function(){
           self.setState({
