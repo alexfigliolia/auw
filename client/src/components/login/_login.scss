@@ -67,13 +67,8 @@
 .login-loading{
 	&>div>.userinfo>input {
 		opacity: 0;
-		transform: scale(0.5) translateY(-50%);
+		transform: translateY(100%) scaleY(0.5);
 		transition: opacity 0.2s 0s, transform 0.2s 0s;
-	}
-	&>div>.userinfo>input:last-of-type {
-		opacity: 0;
-		transform: scale(0.5) translateY(-50%);
-		transition: opacity 0.2s 0.1s, transform 0.2s 0.1s;
 	}
 	&>div>.userinfo>.enter-button {
 		height: 60px;

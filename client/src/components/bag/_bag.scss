@@ -5,6 +5,7 @@
 	height: calc(100vh - 60px);
 	width: 100%;
 	background: #252626;
+	z-index: 40;
 	@include center;
 	@include headerShadow;
 	transform: scaleY(0);
