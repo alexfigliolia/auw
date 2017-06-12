@@ -420,13 +420,15 @@
 
 #circleGift1 .gift-expload,
 #circleGift2 .gift-expload {
-	transform: scale(19);
-	transition-duration: 1s;
-	background: #353535;
-	transition-timing-function: ease-out;
-	transition-delay: 0s;
+	transform: scale(10);
+	// transition-duration: 1s;
+	background: #25314A;
+	transition: transform 0.5s 0s, background 0.5s 0.2s;
+	// transition-timing-function: ease-out;
+	// transition-delay: 0s;
 	@media #{$mq-800} {
 		transform: scale(30);
+		transition: transform 1s 0s, background 0.5s 0.4s;
 	}
 	&::after {
 		opacity: 0;
